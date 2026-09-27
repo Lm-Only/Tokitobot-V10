@@ -29,6 +29,7 @@
  */
 
 const aluguel = require('../../sistemas/aluguel/index')
+const subSistema = require('../../sub')
 
 const dylan = require('../../database/lib/comandos')
 
@@ -44,28 +45,13 @@ categoria: 'aluguel'
 },
 
 async executar(ctx) {
+/* Loja única: Sub Bot + aluguel de grupo. */
+if (['lojinha', 'loja'].includes(ctx.command)) {
+return subSistema.ui.enviarLoja(ctx, aluguel.planos())
+}
+
 if (!ctx.nescessario.aluguel)
 return ctx.reply(ctx.mess.aluguelDesativado())
-
-/*
- * Loja sem link:
- * apenas mostra os planos disponíveis.
- */
-if (['lojinha', 'loja'].includes(ctx.command)) {
-const ps = aluguel.planos()
-
-if (!ps.length)
-return ctx.reply(ctx.mess.aluguelSemPlanos())
-
-return ctx.reply(
-ctx.mess.aluguelPedido(
-'Escolha um plano',
-'—',
-ps,
-ctx.prefix
-)
-)
-}
 
 const link = String(ctx.q || '').trim()
 const code = aluguel.extrairInvite(link)

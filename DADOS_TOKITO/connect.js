@@ -35,14 +35,16 @@ const detector = require('./detector.js')
 const qrcodeTerminal = require('qrcode-terminal')
 const dadosSistema = require('./sistemas/dados.js')
 const placar = require('./database/lib/placar.js')
+const runtimeSub = require('./sub/runtime.js')
+const sistemaSub = runtimeSub.isSubBot ? null : require('./sub/index.js')
 
 const CONFIG_FILE = path.join(__dirname, 'INFO_DADOS', 'config-all.json')
-const qrcode = path.join(__dirname, 'database', 'qrcode')
-const grupos = path.join(__dirname, 'database', 'grupos', 'ATIVAÇÕES-TOKITO')
+const qrcode = runtimeSub.sessionDir
+const grupos = runtimeSub.groupsDir
 const logger = pino({ level: 'silent' })
 
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-const question = text => new Promise(resolve => rl.question(text, resolve))
+const rl = runtimeSub.isSubBot ? null : readline.createInterface({ input: process.stdin, output: process.stdout })
+const question = text => runtimeSub.isSubBot ? Promise.resolve('') : new Promise(resolve => rl.question(text, resolve))
 
 const msgRetryCounterCache = new NodeCache()
 const fotos = new NodeCache({ stdTTL: 1800, checkperiod: 60 })
@@ -74,7 +76,7 @@ return {}
 }
 
 const recarregarConfigBot = () => {
-const config = lerConfigBot()
+const config = runtimeSub.config()
 NomeDoBot = String(config.NomeDoBot || 'TokitoBot-MD')
 ownerName = String(config.ownerName || 'Dylan Modz')
 prefix = String(config.prefix || '!')
@@ -263,16 +265,42 @@ global.__TOKITO_UPDATE_NOTICE_TIMER__.unref?.()
 }
 
 async function startPairing(tokito) {
-console.log('')
-const phoneNumber = await question(colors.white('╰━━➤ Digite o número com DDI: '))
+const phoneNumber = runtimeSub.isSubBot
+? String(process.env.TOKITO_SUB_NUMBER || runtimeSub.id || '')
+: await question(colors.white('╰━━➤ Digite o número com DDI: '))
+
 const numerosColetados = collectNumbers(phoneNumber)
 if (!numerosColetados || numerosColetados.length < 11) {
+if (runtimeSub.isSubBot) {
+process.send?.({ type: 'error', message: 'Número do Sub Bot inválido.' })
+return
+}
 erro('Número inválido. Exemplo: 5511999999999')
 return startPairing(tokito)
 }
 try {
-info('Gerando código de conexão...')
-const code = await tokito.requestPairingCode(numerosColetados)
+info(runtimeSub.isSubBot ? `Gerando código do Sub Bot ${numerosColetados}...` : 'Gerando código de conexão...')
+// Em uma sessão nova o socket ainda pode estar terminando o handshake interno.
+// Dar um pequeno tempo evita solicitar o pairing code enquanto a conexão ainda está fechando/abrindo.
+if (runtimeSub.isSubBot) await delay(1800)
+let code
+let ultimoErro
+for (let tentativa = 1; tentativa <= (runtimeSub.isSubBot ? 3 : 1); tentativa++) {
+  try {
+    code = await tokito.requestPairingCode(numerosColetados)
+    if (code) break
+  } catch (error) {
+    ultimoErro = error
+    if (!runtimeSub.isSubBot || tentativa >= 3) throw error
+    aviso(`Pairing do Sub Bot ainda não ficou pronto. Nova tentativa ${tentativa + 1}/3...`)
+    await delay(2200)
+  }
+}
+if (!code && ultimoErro) throw ultimoErro
+if (runtimeSub.isSubBot) {
+process.send?.({ type: 'pairing-code', code, number: numerosColetados })
+return code
+}
 console.log('')
 topoPainel("❪🧊.ꯧ𝙲𝙾́𝙳𝙸𝙶𝙾 𝙳𝙴 𝙲𝙾𝙽𝙴𝚇𝙰̃𝙾ꯧ⸼🧊❫")
 console.log(colors.cyan("├̟⊹ 🔐 ") + colors.white(`〔 ${code} 〕`))
@@ -280,7 +308,9 @@ fimPainel()
 console.log('')
 info('Abra o WhatsApp > Aparelhos conectados > Conectar com número de telefone.')
 console.log('')
+return code
 } catch (error) {
+if (runtimeSub.isSubBot) process.send?.({ type: 'error', message: String(error?.message || error) })
 erroSistema('Não foi possível gerar o código de conexão', error)
 }
 }
@@ -550,7 +580,7 @@ getMessage: async (key) => undefined })
 
 global.tokito = tokito
 
-detector.iniciar(tokito).catch(error => {
+if (!runtimeSub.isSubBot) detector.iniciar(tokito).catch(error => {
 erroSistema('Erro ao iniciar detector Anti-Pay', error)
 })
 
@@ -640,6 +670,7 @@ const donoGrupo = resolverJid(membros.find(membro => membro?.admin === 'superadm
 
 const donosBot = [ownerNumber]
 
+if (!runtimeSub.isSubBot)
 for (let i = 1; i <= 6; i++) donosBot.push(nescessario?.[`numero_dono${i}`])
 
 const donosBotJids = [
@@ -967,118 +998,3 @@ qrcodeTerminal.generate(qr, { small: true })
 console.log('')
 }
 }
-
-const shouldReconnect = lastDisconnect?.error
-? new Boom(lastDisconnect.error).output.statusCode
-: 0
-
-switch (connection) {
-case 'connecting':
-info(`${NomeDoBot} está conectando ao WhatsApp...`)
-break
-
-case 'open':
-global.startTime = Math.floor(Date.now() / 1000)
-
-reconectando = false
-metodo = null
-ultimoQr = null
-global.qrTokitoAtual = null
-global.mostrarQrTokito = false
-
-console.log(banner3?.string || colors.cyan('\nTOKITO | V10\n'))
-console.log(banner2?.string || colors.blue('dylan Modz'))
-console.log('')
-
-sucesso(`${NomeDoBot} conectado com sucesso.`)
-
-console.log('')
-
-await tokito.sendPresenceUpdate('available').catch(() => {})
-await tokito.updateProfileStatus(`[ ${NomeDoBot} ONLINE 🧊 ]`).catch(() => {})
-iniciarAvisosUpdate(tokito)
-break
-
-case 'close':
-if (shouldReconnect === DisconnectReason.loggedOut || shouldReconnect === 401) {
-erro('Sessão encerrada. Apague a pasta qrcode e conecte novamente.')
-process.exit(0)
-}
-
-if (!reconectando) {
-reconectando = true
-
-aviso(`Conexão fechada. Reconectando em 5 segundos. Código: ${shouldReconnect}`)
-
-setTimeout(() => {
-reconectando = false
-iniciando = false
-startConnect()
-}, 5000)
-}
-break
-}
-}
-
-/*
-       * MENSAGENS
-       * Mantido no mesmo fluxo da base original.
-       */
-if (events['messages.upsert']) {
-const upsert = events['messages.upsert']
-
-try {
-if (!processarMensagemTokito)
-processarMensagemTokito = require('../tokito.js')
-
-if (process.env.TOKITO_DEBUG_RX === '1')
-info(`RX messages.upsert recebido (${upsert?.type || 'sem tipo'})`)
-
-await processarMensagemTokito(tokito, upsert)
-}
-catch (error) {
-erroSistema('Erro no tokito.js', error)
-}
-}
-
-if (events['creds.update']) await saveCreds()
-})
-
-iniciando = false
-} catch (error) {
-erroSistema('Ocorreu um erro ao iniciar a conexão', error)
-aviso('Tentando iniciar novamente em 5 segundos...')
-
-setTimeout(() => {
-iniciando = false
-startConnect()
-}, 5000)
-}
-}
-
-process.on('uncaughtException', error => erroSistema('uncaughtException detectado', error))
-process.on('unhandledRejection', error => erroSistema('unhandledRejection detectado', error))
-
-async function iniciarTokito() {
-recarregarConfigBot()
-const acesso = await prepararAcesso()
-if (!acesso?.allowed) {
-erro(`Não foi possível liberar o acesso: ${acesso?.message || acesso?.code || 'validação indisponível'}`)
-process.exit(24)
-return
-}
-
-if (!sessaoRegistrada() || process.argv.includes('painel')) await showMenu()
-
-placar.ciclo(resultado => {
-if (!resultado?.definitive) return
-erro(`A licença foi recusada pelo servidor: ${resultado.message || resultado.code || 'acesso bloqueado'}`)
-setTimeout(() => process.exit(24), 1200)
-})
-startConnect()
-}
-
-iniciarTokito().catch(error => {
-erroSistema('Falha ao validar o acesso do Tokito V10', error)
-process.exit(24)
-})

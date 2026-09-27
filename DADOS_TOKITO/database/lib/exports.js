@@ -37,6 +37,7 @@ const { Boom } = require('@hapi/boom')
 const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
+const runtimeSub = require('../../sub/runtime.js')
 const os = require('os')
 const crypto = require('crypto')
 const util = require('util')
@@ -80,7 +81,7 @@ gradient: ['red', 'magenta']
 
 const { default: makeWASocket, downloadContentFromMessage, fetchLatestBaileysVersion, useMultiFileAuthState, makeInMemoryStore, DisconnectReason, relayWAMessage, mentionedJid, processTime, MediaType, Browser, MessageType, Presence, Mimetype, Browsers, delay, getLastMessageInChat, downloadMediaMessage, generateWAMessageFromContent, proto, prepareWAMessageMedia, jidNormalizedUser, getContentType, makeCacheableSignalKeyStore } = baileys
 //////////////////////////====//////////////////////////////////
-const setting = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'INFO_DADOS', 'config-all.json'), 'utf8'))
+const setting = runtimeSub.config()
 
 const nescessario = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'INFO_DADOS', 'nescessario.json'), 'utf8'))
 
@@ -88,9 +89,9 @@ const vip = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'membros', 'vi
 //////////////////////////====//////////////////////////////////
 const caminhoVip = path.join(__dirname, '..', 'membros', 'vip.json')
 
-const arquivo = path.join(__dirname, '..', 'grupos', 'horario.json')
+const arquivo = runtimeSub.horarioFile
 
-const pasta = path.join(__dirname, '..', 'midiabv')
+const pasta = runtimeSub.mediaDir
 
 const fuso = 'America/Fortaleza'
 

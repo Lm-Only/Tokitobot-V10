@@ -35,14 +35,11 @@
 const fs = require('fs')
 const path = require('path')
 const axios = require('axios')
+const runtimeSub = require('../sub/runtime.js')
 
-const FILE = path.join(
-__dirname,
-'..',
-'database',
-'sistemas',
-'autolike.json'
-)
+const FILE = runtimeSub.isSubBot
+? path.join(runtimeSub.baseDir, 'sistemas', 'autolike.json')
+: path.join(__dirname, '..', 'database', 'sistemas', 'autolike.json')
 
 const CFG = path.join(
 __dirname,
@@ -51,13 +48,7 @@ __dirname,
 'config-all.json'
 )
 
-const GROUPS = path.join(
-__dirname,
-'..',
-'database',
-'grupos',
-'ATIVAÇÕES-TOKITO'
-)
+const GROUPS = runtimeSub.groupsDir
 
 const modoFreeFireAtivo = chat => {
 if (!String(chat || '').endsWith('@g.us'))

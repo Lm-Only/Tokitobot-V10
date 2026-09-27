@@ -203,6 +203,20 @@ const executar = async (comando, ctx = {}) => {
     return false
 
   const categoria = normal(achado.mod.categoria || achado.mod.info?.categoria)
+
+  if (ctx.isSubBot) {
+    if (categoria === 'sub' || achado.canonico === 'menudono') return true
+
+    if (categoria === 'dono') {
+      const permissoesSub = require('../sub/permissoes.js')
+      if (!ctx.isSubOwner || !permissoesSub.donoPermitido(achado.canonico, achado.comando)) {
+        if (typeof ctx.reply === 'function')
+          await ctx.reply(ctx.mess?.onlyOwner ? ctx.mess.onlyOwner() : 'Comando indisponível nesta sessão.')
+        return true
+      }
+    }
+  }
+
   const alternadorFreeFire = achado.canonico === 'modofreefire'
 
   if (

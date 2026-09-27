@@ -29,6 +29,7 @@
  */
 
 const dylan = require('../../database/lib/comandos')
+const runtimeSub = require('../../sub/runtime.js')
 
 dylan.setCommand({
 nome: "channel",
@@ -49,7 +50,9 @@ if (!entradaCanal)
 return reply(mess.channelRequired(prefix, command))
 if (entradaCanal === '0') {
 setting.channeldl = '0@newsletter'
-fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
+setting.channel = '0@newsletter'
+if (runtimeSub.isSubBot) runtimeSub.updateSubConfig({ channel: '0@newsletter' })
+else fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
 return reply(mess.channelDisabled())
 }
 try {
@@ -67,7 +70,9 @@ jidReal = meta?.jid || meta?.id || ''
 if (!jidReal)
 return reply(mess.error())
 setting.channeldl = jidReal
-fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
+setting.channel = jidReal
+if (runtimeSub.isSubBot) runtimeSub.updateSubConfig({ channel: jidReal })
+else fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
 await reply(mess.channelEnabled(jidReal, entradaCanal))
 }
 catch (e) {

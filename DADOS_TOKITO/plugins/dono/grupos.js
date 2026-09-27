@@ -107,7 +107,7 @@ if (!jid) {
 jid = String(inviteInfo?.id || inviteInfo?.jid || inviteInfo?.groupJid || '').trim()
 }
 
-if (jid) {
+if (jid && !ctx.isSubBot) {
 aluguel.savegp(jid, {
 nome,
 quantidade,

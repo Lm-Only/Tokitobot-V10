@@ -29,6 +29,7 @@
  */
 
 const dylan = require('../../database/lib/comandos')
+const runtimeSub = require('../../sub/runtime.js')
 
 dylan.setCommand({
 nome: "prefixo",
@@ -48,7 +49,8 @@ const novoPrefixo = String(q || '').trim()
 if (!novoPrefixo)
 return reply(mess.prefixRequired())
 setting.prefix = novoPrefixo
-fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
+if (runtimeSub.isSubBot) runtimeSub.updateSubConfig({ prefix: novoPrefixo })
+else fs.writeFileSync('./DADOS_TOKITO/INFO_DADOS/config-all.json', JSON.stringify(setting, null, 2))
 await reply(mess.prefixChanged(novoPrefixo))
 }
 }

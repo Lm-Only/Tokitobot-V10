@@ -116,11 +116,11 @@ title: '🧊⃞ ᴍᴇɴᴜ ᴀᴅᴍ ⃞🧊',
 description: 'ᴍᴏsᴛʀᴀ ᴏs ᴄᴏᴍᴀɴᴅᴏs ᴘᴀʀᴀ ᴀᴅᴍɪɴɪsᴛʀᴀʀ ᴏ ɢʀᴜᴘᴏ.',
 id: `${prefix}menuadm`
 },
-{
+...(isSubBot ? [] : [{
 title: '🧊⃞ ᴍᴇɴᴜ ᴅᴏɴᴏ ⃞🧊',
 description: 'ᴍᴏsᴛʀᴀ ᴏs ᴄᴏᴍᴀɴᴅᴏs ᴇxᴄʟᴜsɪᴠᴏs ᴅᴏ ᴅᴏɴᴏ ᴅᴏ ʙᴏᴛ.',
 id: `${prefix}menudono`
-}
+}])
 ]
 },
 {
