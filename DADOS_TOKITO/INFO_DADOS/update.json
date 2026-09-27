@@ -1,25 +1,22 @@
 {
   "bot": "Tokito Bot V10",
-  "version": "10.1.31",
+  "version": "10.1.30",
   "channel": "stable",
   "repository": "dylan-Modz/Tokitobot-V10",
   "ref": "main",
-  "publishedAt": "2026-09-27T23:34:00.726Z",
+  "publishedAt": "2026-09-27T23:45:00.000Z",
   "changelog": [
-    "[Melhoria] V10.1.30 - aplica R$1 por dia no aluguel",
-    "A versão 10.1.31 já está disponível para atualização.",
-    "Conexão do bot atualizada",
-    "Menus atualizado",
-    "Index atualizado",
-    "Dados atualizado",
-    "Package atualizado",
-    "Arquivo principal do bot atualizado"
+    "Corrige o instalador da atualização do sistema Sub Bot.",
+    "Restaura completos os arquivos grandes que haviam sido publicados cortados.",
+    "Mantém todos os arquivos da V10.1.29 para instalações que ainda estão na V10.1.28.",
+    "Aplica R$1 por dia aos planos de aluguel em grupo sem sobrescrever dados protegidos.",
+    "Sincroniza o Tokito Bot para a versão 10.1.30."
   ],
   "delete": [],
   "archiveSha256": "",
-  "type": "Melhoria",
-  "title": "V10.1.30 - aplica R$1 por dia no aluguel",
-  "notice": "A versão 10.1.31 já está disponível para atualização.",
+  "type": "Correção",
+  "title": "Sistema Sub Bot - correção da atualização",
+  "notice": "A versão 10.1.30 já está disponível para atualização.",
   "required": true,
   "minimumVersion": "10.0.0",
   "files": [
@@ -34,24 +31,24 @@
       "size": 67014
     },
     {
-      "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
-      "sha256": "dba52836a9e8fddf9f965460d21d3512890e06b79b40b6a8ef383edb90f75fa3",
-      "size": 13612
-    },
-    {
       "path": "DADOS_TOKITO/sistemas/dados.js",
       "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
       "size": 32407
     },
     {
-      "path": "package.json",
-      "sha256": "7ca5877af08a157c295831af62b56aca405f88cfbf5332ea094206ebbd31ad39",
-      "size": 1154
-    },
-    {
       "path": "tokito.js",
       "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
       "size": 47648
+    },
+    {
+      "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "package.json",
+      "sha256": "",
+      "size": 0
     }
   ],
   "releases": [
@@ -251,55 +248,11 @@
           "path": "tokito.js",
           "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
           "size": 47648
-        },
-        {
-          "path": "DADOS_TOKITO/INFO_DADOS/LOGOS/planos.json",
-          "sha256": "550d5a0f0d4ad239c9c5238477076f6f0219a0b7e320b02e3d535c9b021272b6",
-          "size": 608
         }
       ],
       "delete": [],
       "required": true,
       "publishedAt": "2026-09-27T22:58:00.000Z"
-    },
-    {
-      "version": "10.1.30",
-      "fromVersion": "10.1.29",
-      "channel": "stable",
-      "type": "Melhoria",
-      "title": "Corrige arquivos completos da V10.1.29",
-      "notice": "A versão 10.1.30 já está disponível para atualização.",
-      "changelog": [
-        "Conexão do bot atualizada",
-        "Menus atualizado",
-        "Dados atualizado",
-        "Arquivo principal do bot atualizado"
-      ],
-      "files": [
-        {
-          "path": "DADOS_TOKITO/connect.js",
-          "sha256": "b36eedcc70985357dcd12c2af413809259c053646a550d9abc77ea6510ad353f",
-          "size": 34590
-        },
-        {
-          "path": "DADOS_TOKITO/mensagens/menus.js",
-          "sha256": "6c5625734233ffb25172a22b4e595bc46445879194526deb89d7ed292bc64d9f",
-          "size": 67011
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/dados.js",
-          "sha256": "1266d05895286b5b965ab45dcfc85dc296b1f0157e85d9b14316bbdeac52ca11",
-          "size": 32404
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "e277544db7b51b146ea9e8d3727e53377e98ead0aaaef89a99b4025106011758",
-          "size": 47645
-        }
-      ],
-      "delete": [],
-      "required": true,
-      "publishedAt": "2026-09-27T23:31:00.195Z"
     },
     {
       "version": "10.1.31",
@@ -351,9 +304,59 @@
       "delete": [],
       "required": true,
       "publishedAt": "2026-09-27T23:34:00.723Z"
+    },
+    {
+      "version": "10.1.30",
+      "fromVersion": "10.1.29",
+      "channel": "stable",
+      "type": "Correção",
+      "title": "Sistema Sub Bot - correção da atualização",
+      "notice": "A versão 10.1.30 já está disponível para atualização.",
+      "changelog": [
+        "Corrige o instalador da atualização do sistema Sub Bot.",
+        "Restaura completos os arquivos grandes que haviam sido publicados cortados.",
+        "Mantém todos os arquivos da V10.1.29 para instalações que ainda estão na V10.1.28.",
+        "Aplica R$1 por dia aos planos de aluguel em grupo sem sobrescrever dados protegidos.",
+        "Sincroniza o Tokito Bot para a versão 10.1.30."
+      ],
+      "files": [
+        {
+          "path": "DADOS_TOKITO/connect.js",
+          "sha256": "5d80475f43830bd02de406db6ab3b004ea7c9034146073547d3c248e496ff6f6",
+          "size": 34593
+        },
+        {
+          "path": "DADOS_TOKITO/mensagens/menus.js",
+          "sha256": "c3b00f3028354f1c2a4b229d07cb7f715dce5a763e868a469e197d054fd43956",
+          "size": 67014
+        },
+        {
+          "path": "DADOS_TOKITO/sistemas/dados.js",
+          "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
+          "size": 32407
+        },
+        {
+          "path": "tokito.js",
+          "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
+          "size": 47648
+        },
+        {
+          "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "package.json",
+          "sha256": "",
+          "size": 0
+        }
+      ],
+      "delete": [],
+      "required": true,
+      "publishedAt": "2026-09-27T23:45:00.000Z"
     }
   ],
-  "versao": "10.1.29",
+  "versao": "10.1.30",
   "mode": "incremental",
   "notify": true,
   "migration": {
