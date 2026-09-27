@@ -497,7 +497,8 @@ throw new Error('Repositório de atualização inválido em update.json.')
 if (!/^[A-Za-z0-9_./-]+$/.test(ref))
 throw new Error('Referência de atualização inválida em update.json.')
 
-return `https://raw.githubusercontent.com/${repo}/${ref}/DADOS_TOKITO/INFO_DADOS/update.json`}
+return `https://raw.githubusercontent.com/${repo}/${ref}/DADOS_TOKITO/INFO_DADOS/update.json`
+}
 
 async function verificarUpdate() {
 const local = localInfo()
@@ -996,6 +997,7 @@ createdAt: new Date().toISOString(),
 entries
 }
 )
+
 return dir
 }
 

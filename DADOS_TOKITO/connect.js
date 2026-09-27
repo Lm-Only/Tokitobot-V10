@@ -498,6 +498,7 @@ config.API_KEY_TOKITO = ''
 salvarConfigBot(config)
 return solicitarToken()
 }
+
 return acesso
 }
 
@@ -997,6 +998,7 @@ qrcodeTerminal.generate(qr, { small: true })
 console.log('')
 }
 }
+
 const shouldReconnect = lastDisconnect?.error
 ? new Boom(lastDisconnect.error).output.statusCode
 : 0

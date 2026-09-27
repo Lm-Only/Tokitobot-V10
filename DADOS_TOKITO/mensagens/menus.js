@@ -497,7 +497,8 @@ return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ───�
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delvip @usuario
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}viplist
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}limparvip
-┃࣪ ╎—̳͟͞͞ 👑 ${prefix}addcmdvip comando┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delcmdvip comando
+┃࣪ ╎—̳͟͞͞ 👑 ${prefix}addcmdvip comando
+┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delcmdvip comando
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}listcmdvip
 ┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
 ╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
@@ -997,6 +998,7 @@ return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ───�
 ┃࣪ ╎—̳͟͞͞ 🪙 ${prefix}modocoins 1/0
 ┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
 ╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
 ╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
 ┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
 ├╾═╼･ﾟ𖤐ﾟ･｡🏙️｡･ﾟ𖤐ﾟ･╾═╼┤

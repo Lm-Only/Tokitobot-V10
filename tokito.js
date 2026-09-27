@@ -497,7 +497,8 @@ antinotas: false,
 antipalavra: false,
 palavrasProibidas: [],
 bangp: false,
-modoia: {ativo: false,
+modoia: {
+ativo: false,
 tipo: 'texto'
 },
 antiddd: {
@@ -996,7 +997,8 @@ const reagir = async (jid, emoji) => {
 return tokito.sendMessage(jid, {
 react: {
 text: emoji,
-key: info.key}
+key: info.key
+}
 })
 }
 const dylanModz = async (texto, emoji = '🧊', botoes = []) => {
