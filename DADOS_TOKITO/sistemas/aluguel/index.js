@@ -40,7 +40,16 @@ fs.renameSync(t, p)
 
 const planos = () => {
 const l = ler(arquivos.planos, [])
-return Array.isArray(l) ? l.filter(p => p && Number(p.preco) > 0 && Number(p.dias) > 0) : []
+if (!Array.isArray(l)) return []
+
+const diasPermitidos = new Set([7, 15, 20, 30, 40, 50, 60])
+
+return l
+.filter(p => p && diasPermitidos.has(Number(p.dias)))
+.map(p => ({
+...p,
+preco: Number(p.dias)
+}))
 }
 
 const extrairInvite = link => {
