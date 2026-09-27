@@ -4,41 +4,120 @@
   "channel": "stable",
   "repository": "dylan-Modz/Tokitobot-V10",
   "ref": "main",
-  "publishedAt": "2026-09-27T23:45:00.000Z",
+  "publishedAt": "2026-09-27T23:55:00.000Z",
   "changelog": [
-    "Corrige o instalador da atualização do sistema Sub Bot.",
-    "Restaura completos os arquivos grandes que haviam sido publicados cortados.",
-    "Mantém todos os arquivos da V10.1.29 para instalações que ainda estão na V10.1.28.",
-    "Aplica R$1 por dia aos planos de aluguel em grupo sem sobrescrever dados protegidos.",
-    "Sincroniza o Tokito Bot para a versão 10.1.30."
+    "Corrige a instalação da atualização do sistema Sub Bot.",
+    "Instala todos os arquivos do Sub Bot diretamente a partir da V10.1.28.",
+    "Remove do manifesto incremental o arquivo de planos protegido que bloqueava a atualização.",
+    "Aplica R$1 por dia ao aluguel em grupo pelo sistema de aluguel."
   ],
   "delete": [],
   "archiveSha256": "",
   "type": "Correção",
-  "title": "Sistema Sub Bot - correção da atualização",
+  "title": "Sistema Sub Bot - atualização corrigida",
   "notice": "A versão 10.1.30 já está disponível para atualização.",
   "required": true,
   "minimumVersion": "10.0.0",
   "files": [
     {
+      "path": ".gitignore",
+      "sha256": "",
+      "size": 0
+    },
+    {
       "path": "DADOS_TOKITO/connect.js",
-      "sha256": "5d80475f43830bd02de406db6ab3b004ea7c9034146073547d3c248e496ff6f6",
-      "size": 34593
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/database/lib/exports.js",
+      "sha256": "",
+      "size": 0
     },
     {
       "path": "DADOS_TOKITO/mensagens/menus.js",
-      "sha256": "c3b00f3028354f1c2a4b229d07cb7f715dce5a763e868a469e197d054fd43956",
-      "size": 67014
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/aluguel/comprar.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/dono/channel.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/dono/grupos.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/dono/prefixo.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/index.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/menus/menu.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/menus/menuadm.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/00-cadastro.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/code.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/delsub.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/meu.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/restartsub.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/sub.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/sub/subs.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sistemas/autolike.js",
+      "sha256": "",
+      "size": 0
     },
     {
       "path": "DADOS_TOKITO/sistemas/dados.js",
-      "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
-      "size": 32407
-    },
-    {
-      "path": "tokito.js",
-      "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
-      "size": 47648
+      "sha256": "",
+      "size": 0
     },
     {
       "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
@@ -46,302 +125,210 @@
       "size": 0
     },
     {
+      "path": "DADOS_TOKITO/sub/cadastro.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/index.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/manager.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/pagamentos.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/permissoes.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/runtime.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/store.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/sub/ui.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
       "path": "package.json",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "tokito.js",
       "sha256": "",
       "size": 0
     }
   ],
   "releases": [
     {
-      "version": "10.1.28",
-      "fromVersion": "10.1.27",
-      "channel": "stable",
-      "type": "Novidade",
-      "title": "Novo comando Regras",
-      "notice": "A versão 10.1.28 já está disponível para atualização.",
-      "changelog": [
-        "Novo comando regras adicionado aos grupos.",
-        "O comando mostra nome do grupo, total de membros e administradores.",
-        "As regras exibidas são puxadas automaticamente da descrição atual do grupo.",
-        "Versão do package.json sincronizada com a versão atual do Tokito Bot."
-      ],
-      "files": [
-        {
-          "path": "DADOS_TOKITO/plugins/admin/regras.js",
-          "sha256": "a4789d57304d86ac0137039f6c41efb38a816ef3aa451f5edf11b9a183c9cb9a",
-          "size": 2845
-        },
-        {
-          "path": "package.json",
-          "sha256": "f62837c0ae9bc8f85d7cd463947369da059f06c81c0c3dd4144fad57bc155c46",
-          "size": 1154
-        }
-      ],
-      "delete": [],
-      "required": true,
-      "publishedAt": "2026-09-25T18:29:00.000Z"
-    },
-    {
-      "version": "10.1.29",
+      "version": "10.1.30",
       "fromVersion": "10.1.28",
       "channel": "stable",
-      "type": "Novidade",
-      "title": "Sistema Sub Bot",
-      "notice": "A versão 10.1.29 já está disponível para atualização.",
+      "type": "Correção",
+      "title": "Sistema Sub Bot - atualização corrigida",
+      "notice": "A versão 10.1.30 já está disponível para atualização.",
       "changelog": [
-        "Novo sistema de Sub Bot integrado ao Tokito V10.",
-        "Cadastro de Sub Bot diretamente pelo grupo.",
-        "Código de conexão enviado no privado do dono com opção para copiar.",
-        "Aviso no grupo quando o Sub Bot fica online, com acesso ao canal do Tokito.",
-        "Loja atualizada em carrossel com planos de Sub Bot e aluguel em grupo.",
-        "Dono de cada Sub Bot reconhecido de forma independente.",
-        "Prefixo individual e persistente para cada Sub Bot.",
-        "Sessões e dados dos Sub Bots isolados e protegidos durante atualizações."
+        "Instalação completa do sistema Sub Bot e correção do atualizador."
       ],
       "files": [
         {
           "path": ".gitignore",
-          "sha256": "74eb3cf8f3ee9e7b31d8f31d52d737fa7943407d25be5e6b1f0156583d09b7f4",
-          "size": 67
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/connect.js",
-          "sha256": "5d80475f43830bd02de406db6ab3b004ea7c9034146073547d3c248e496ff6f6",
-          "size": 34593
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/database/lib/exports.js",
-          "sha256": "efb4ebb3e959b3001c945b2432a668736bd0e1944cfe23e065eb3dd1c7c8df42",
-          "size": 9345
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/mensagens/menus.js",
-          "sha256": "c3b00f3028354f1c2a4b229d07cb7f715dce5a763e868a469e197d054fd43956",
-          "size": 67014
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/aluguel/comprar.js",
-          "sha256": "027d466e142ad21632fde82f9b284cfdb8539255448a02d6053c9a852d9ef250",
-          "size": 3975
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/dono/channel.js",
-          "sha256": "ce0072ec2ee369b893c2e5ec6464a5f9fe73496079710a1d154c4661300acaf1",
-          "size": 2684
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/dono/grupos.js",
-          "sha256": "f4546c74b621ad1404fbe8fd8fe0b9275866d3bd0382b0bab2ed333f9e629a23",
-          "size": 3262
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/dono/prefixo.js",
-          "sha256": "6725c9842ee61f56d365be2edecf3d9720219d307abb098974e1841e94aa06d0",
-          "size": 1827
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/index.js",
-          "sha256": "a8ad46279956ec5966617e8eaeafa093a084dcf47077454627b80a098b20fc08",
-          "size": 8152
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/menus/menu.js",
-          "sha256": "f9a3034f43455975828366adc0a0e5a75702a3498a8fc6bf2ad0a74d9237763b",
-          "size": 6581
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/menus/menuadm.js",
-          "sha256": "915f148956a9c408de9d0aba627dafa68831c38a0da919075491d70ddf4471ee",
-          "size": 1663
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/00-cadastro.js",
-          "sha256": "b8c6ad2fcece4b4321e129c1c7a1e53d3a377e0501ab518956dc7fe0dc8f207b",
-          "size": 272
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/code.js",
-          "sha256": "245b89b6e570a404da3c8918c56808ef5e794c2e8b57e9e7bc1cf222246476f1",
-          "size": 2206
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/delsub.js",
-          "sha256": "c2d8b6944205e298baecc58f664866f7d508c811ad2d3f3ee0ff09ed93a0fca4",
-          "size": 935
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/meu.js",
-          "sha256": "69945e5ccd7c003fd6b12f10cc3802241d9fdb60508977af46b2da04d9b3eab1",
-          "size": 1078
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/restartsub.js",
-          "sha256": "07232d63486d3af987ec7501b50c51b754bebcdd86e973cda8357b641223ae80",
-          "size": 956
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/sub.js",
-          "sha256": "b047f74459b090b370605ca4d7f8c3c5b32edba9a4600a2e2f06462d12683faf",
-          "size": 1890
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/plugins/sub/subs.js",
-          "sha256": "50ebe04ed80c08f6979bdf889fa621bacae6cbe8348808ff0ce7edfa0f3ea9f9",
-          "size": 1079
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sistemas/autolike.js",
-          "sha256": "a2a125a80673d1c6525c8d5d0dbbab336189b6517f24207e3db80b5c38daae50",
-          "size": 6475
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sistemas/dados.js",
-          "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
-          "size": 32407
+          "sha256": "",
+          "size": 0
+        },
+        {
+          "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/cadastro.js",
-          "sha256": "6a6f65927eb886b1d2583fe34699f28cb5e9ef6b23cb268889078c1fbf41a11c",
-          "size": 4075
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/index.js",
-          "sha256": "25040a7670857e34dc9577d8959c7ddf9087e4e4ede3bd4048c0ff932c4fbd83",
-          "size": 822
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/manager.js",
-          "sha256": "cb38d0df601e612949fbe18a1df036ea452ecd2d85aa7fae45b53352e97336a6",
-          "size": 4721
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/pagamentos.js",
-          "sha256": "5ec18038bb42bde45a1d48222adc8e20df01eecc4b1fa412152a7586f52687d6",
-          "size": 2879
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/permissoes.js",
-          "sha256": "2ada10a44d2226a94f6238ae082ab67f1b148a34435da37067a354971c4b1fbc",
-          "size": 588
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/runtime.js",
-          "sha256": "9190625dcc0ebc3ec62a1a54f83e063f7607b0f562ae8d70f01049ab3c4b44f1",
-          "size": 3698
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/store.js",
-          "sha256": "ec3b95bc53336e4e403726c0814b3c4cd8fa8b40471a1e382fb64e3b08a4b134",
-          "size": 4094
+          "sha256": "",
+          "size": 0
         },
         {
           "path": "DADOS_TOKITO/sub/ui.js",
-          "sha256": "516d9a91ea1e32552f36560b8d611192e65582367531a276f0498dc569a7ee7c",
-          "size": 15141
-        },
-        {
-          "path": "package.json",
-          "sha256": "3570bba8d17b0d719f992873e7ef7c1849a86bf53b903a3d584fe0307d80875c",
-          "size": 1154
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
-          "size": 47648
-        }
-      ],
-      "delete": [],
-      "required": true,
-      "publishedAt": "2026-09-27T22:58:00.000Z"
-    },
-    {
-      "version": "10.1.31",
-      "fromVersion": "10.1.30",
-      "channel": "stable",
-      "type": "Melhoria",
-      "title": "V10.1.30 - aplica R$1 por dia no aluguel",
-      "notice": "A versão 10.1.31 já está disponível para atualização.",
-      "changelog": [
-        "Conexão do bot atualizada",
-        "Menus atualizado",
-        "Index atualizado",
-        "Dados atualizado",
-        "Package atualizado",
-        "Arquivo principal do bot atualizado"
-      ],
-      "files": [
-        {
-          "path": "DADOS_TOKITO/connect.js",
-          "sha256": "5d80475f43830bd02de406db6ab3b004ea7c9034146073547d3c248e496ff6f6",
-          "size": 34593
-        },
-        {
-          "path": "DADOS_TOKITO/mensagens/menus.js",
-          "sha256": "c3b00f3028354f1c2a4b229d07cb7f715dce5a763e868a469e197d054fd43956",
-          "size": 67014
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
-          "sha256": "dba52836a9e8fddf9f965460d21d3512890e06b79b40b6a8ef383edb90f75fa3",
-          "size": 13612
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/dados.js",
-          "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
-          "size": 32407
-        },
-        {
-          "path": "package.json",
-          "sha256": "7ca5877af08a157c295831af62b56aca405f88cfbf5332ea094206ebbd31ad39",
-          "size": 1154
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
-          "size": 47648
-        }
-      ],
-      "delete": [],
-      "required": true,
-      "publishedAt": "2026-09-27T23:34:00.723Z"
-    },
-    {
-      "version": "10.1.30",
-      "fromVersion": "10.1.29",
-      "channel": "stable",
-      "type": "Correção",
-      "title": "Sistema Sub Bot - correção da atualização",
-      "notice": "A versão 10.1.30 já está disponível para atualização.",
-      "changelog": [
-        "Corrige o instalador da atualização do sistema Sub Bot.",
-        "Restaura completos os arquivos grandes que haviam sido publicados cortados.",
-        "Mantém todos os arquivos da V10.1.29 para instalações que ainda estão na V10.1.28.",
-        "Aplica R$1 por dia aos planos de aluguel em grupo sem sobrescrever dados protegidos.",
-        "Sincroniza o Tokito Bot para a versão 10.1.30."
-      ],
-      "files": [
-        {
-          "path": "DADOS_TOKITO/connect.js",
-          "sha256": "5d80475f43830bd02de406db6ab3b004ea7c9034146073547d3c248e496ff6f6",
-          "size": 34593
-        },
-        {
-          "path": "DADOS_TOKITO/mensagens/menus.js",
-          "sha256": "c3b00f3028354f1c2a4b229d07cb7f715dce5a763e868a469e197d054fd43956",
-          "size": 67014
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/dados.js",
-          "sha256": "1e321057d3762887520ea0a09d0a1b7863fae2c982a8e8968a4e5e55224ba0f6",
-          "size": 32407
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "783b1ada658300f70d7b87099985b89c4748ce7ec48d221f03acb7a770bbb795",
-          "size": 47648
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
           "sha256": "",
           "size": 0
         },
@@ -349,24 +336,21 @@
           "path": "package.json",
           "sha256": "",
           "size": 0
+        },
+        {
+          "path": "tokito.js",
+          "sha256": "",
+          "size": 0
         }
       ],
       "delete": [],
       "required": true,
-      "publishedAt": "2026-09-27T23:45:00.000Z"
+      "publishedAt": "2026-09-27T23:55:00.000Z"
     }
   ],
   "versao": "10.1.30",
   "mode": "incremental",
   "notify": true,
-  "migration": {
-    "id": "tokito-v10-clean-structure-20260831",
-    "required": true,
-    "automatic": true,
-    "minimumVersion": "10.0.0",
-    "marker": "DADOS_TOKITO/INFO_DADOS/update-structure.json",
-    "note": "Versões antigas recebem primeiro os arquivos da ponte e depois migram para a estrutura completa preservando dados protegidos."
-  },
   "incremental": true,
   "fromVersion": "10.1.28"
 }
