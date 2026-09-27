@@ -497,8 +497,7 @@ antinotas: false,
 antipalavra: false,
 palavrasProibidas: [],
 bangp: false,
-modoia: {
-ativo: false,
+modoia: {ativo: false,
 tipo: 'texto'
 },
 antiddd: {
@@ -997,4 +996,383 @@ const reagir = async (jid, emoji) => {
 return tokito.sendMessage(jid, {
 react: {
 text: emoji,
-key: info.key
+key: info.key}
+})
+}
+const dylanModz = async (texto, emoji = '🧊', botoes = []) => {
+await reagir(from, emoji)
+const caminhoVideo = path.join(__dirname, 'DADOS_TOKITO', 'INFO_DADOS', 'LOGOS', 'fotomenu.mp4')
+const caminhoImagem = path.join(__dirname, 'DADOS_TOKITO', 'INFO_DADOS', 'LOGOS', 'fotomenu.png')
+const contextInfo = canalInfo([sender])
+let resultado
+if (!isBotoes || !botoes.length) {
+if (fs.existsSync(caminhoVideo))
+resultado = await tokito.sendMessage(from, {
+video: fs.readFileSync(caminhoVideo),
+mimetype: 'video/mp4',
+gifPlayback: true,
+caption: texto,
+contextInfo
+}, { quoted: selo })
+else if (fs.existsSync(caminhoImagem))
+resultado = await tokito.sendMessage(from, {
+image: fs.readFileSync(caminhoImagem),
+caption: texto,
+contextInfo
+}, { quoted: selo })
+else
+resultado = await tokito.sendMessage(from, {
+text: texto,
+contextInfo
+}, { quoted: selo })
+}
+else {
+try {
+let header
+if (fs.existsSync(caminhoVideo)) {
+const media = await prepareWAMessageMedia({
+video: fs.readFileSync(caminhoVideo),
+gifPlayback: true
+}, { upload: tokito.waUploadToServer })
+header = proto.Message.InteractiveMessage.Header.create({
+hasMediaAttachment: true,
+videoMessage: media.videoMessage
+})
+}
+else if (fs.existsSync(caminhoImagem)) {
+const media = await prepareWAMessageMedia({ image: fs.readFileSync(caminhoImagem) }, { upload: tokito.waUploadToServer })
+header = proto.Message.InteractiveMessage.Header.create({
+hasMediaAttachment: true,
+imageMessage: media.imageMessage
+})
+}
+const dados = {
+contextInfo,
+body: proto.Message.InteractiveMessage.Body.create({ text: texto }),
+footer: proto.Message.InteractiveMessage.Footer.create({ text: `` }),
+nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({ buttons: enviarbuton(botoes) })
+}
+if (header)
+dados.header = header
+const msg = generateWAMessageFromContent(from, { interactiveMessage: proto.Message.InteractiveMessage.create(dados) }, {
+quoted: selo,
+userJid: tokito.user.id
+})
+resultado = await tokito.relayMessage(from, msg.message, { messageId: msg.key.id })
+}
+catch (e) {
+console.log('[BOTÕES MENU]', modulos.sanitizarErro(e, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+if (fs.existsSync(caminhoVideo))
+resultado = await tokito.sendMessage(from, {
+video: fs.readFileSync(caminhoVideo),
+mimetype: 'video/mp4',
+gifPlayback: true,
+caption: texto,
+contextInfo
+}, { quoted: selo })
+else if (fs.existsSync(caminhoImagem))
+resultado = await tokito.sendMessage(from, {
+image: fs.readFileSync(caminhoImagem),
+caption: texto,
+contextInfo
+}, { quoted: selo })
+else
+resultado = await tokito.sendMessage(from, {
+text: texto,
+contextInfo
+}, { quoted: selo })
+}
+}
+try {
+const cfgAudio = modulos.globalCfg()
+if (cfgAudio.audioMenu && cfgAudio.audioMenuArquivo) {
+const localAudio = path.isAbsolute(cfgAudio.audioMenuArquivo) ? cfgAudio.audioMenuArquivo : path.join(__dirname, cfgAudio.audioMenuArquivo)
+if (fs.existsSync(localAudio))
+await tokito.sendMessage(from, {
+audio: fs.readFileSync(localAudio),
+mimetype: 'audio/mpeg',
+ptt: false,
+contextInfo: canalInfo([sender])
+}, { quoted: selo })
+}
+}
+catch (e) {
+console.log('[ÁUDIO MENU]', modulos.sanitizarErro(e, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+}
+return resultado
+}
+const limpar = valor => String(valor || 'arquivo').replace(/[\\/:*?"<>|]/g, '').trim().slice(0, 100) || 'arquivo'
+const achar = (...lista) => lista.find(valor => typeof valor === 'string' && /^https?:\/\//i.test(valor)) || null
+const itens = dados => {
+const lista = dados?.resultado || dados?.resultados || dados?.result || dados?.data || dados?.videos || []
+if (Array.isArray(lista))
+return lista
+if (Array.isArray(lista?.videos))
+return lista.videos
+if (Array.isArray(lista?.items))
+return lista.items
+return []
+}
+const contextoJogos = (comandoAtual = command) => ({
+bot: tokito, tokito, info, from, sender, body, q, command: comandoAtual, prefix, isCmd,
+isGroup, isGroupAdmins, isBotGroupAdmins, SoDono, dataGp, setGp,
+mentions: menc_jid2.length ? menc_jid2 : menc_prt ? [menc_prt] : [],
+reply, reagir, selo, newsletter, canalInfo, API_URL, API_KEY_TOKITO,
+channeldl, NomeDoBot, isBotoes
+})
+
+const plug = (cmd = command) => {
+const ctx = {
+__dirname, __filename, isSubBot: runtimeSub.isSubBot, subId: runtimeSub.id, subOwner: runtimeSub.owner, isSubOwner, runtimeSub, tokito, upsert, info, mensagem, type, content, from, sender,
+body, Procurar_String, budy2, budy, PR_String, q, args, command: cmd, prefix, isCmd,
+isGroup, isStatus, stub, pushname, groupMetadata, groupName, groupDesc, groupMembers,
+dirGroup, data_IDGP, dataGp, setGp, isWelkom, isWelkom2, isWelkom3, limpo, nJid,
+NumeroDoBot, botNumber, messagesC, argss, nmrdn, numerodono, isBotoff, isBotoes,
+isModobn, isBot, SoDono, DonoOficial, groupAdmins, membrosGrupo, adminsNormalizados,
+senderNormalizado, botNormalizado, isGroupAdmins, isBotGroupAdmins, vip, isVip,
+isCargo, isChVip, Res_SoDono, ctxMsg, normalizar, quotedParticipant, mentionedList,
+menc_sticker, menc_prt, menc_jid2, qSeguro, temMention, menc_os2, menc_jid,
+sender_ou_n, numClean, mrc_ou_numero, marc_tds, menc_prt_nmr, alvoPorMarcacaoOuNumero, destino, dataHoraBR,
+horaBR, baileysVersion, numeroSender, messageId, whatIsPhone, canalInfo, newsletter,
+isVerificado, SeloMeta, selo, reply, enviarbuton, botaozin, reagir, contextoJogos,
+dylanModz, limpar, achar, itens, NomeDoBot, ownerName, channel, channeldl,
+ownerNumber, CREDENTIALS_USER, API_URL, API_KEY_TOKITO, getContentType,
+jidNormalizedUser, proto, prepareWAMessageMedia, generateWAMessageFromContent,
+getFileBuffer, DLT_FL, getGroupAdmins, getMembros, getRandom, fs, path, os, colors,
+performance, linguagem, mess, axios, setting, nescessario, caminhoVip, arquivo,
+pasta, fuso, sendVideoAsSticker, sendVideoAsSticker2, sendImageAsSticker2,
+sendImageAsSticker, funcoes, detector, plugins, regrasPlugins, aluguel, modulos,
+similar, comandos, modoJogosAtivo, getAdivinheGame, saveAdivinheGame,
+removeAdivinheGame, criarAdivinheGame, enviarAdivinhe, getQuizGame, saveQuizGame,
+removeQuizGame, criarQuizGame, enviarQuiz, getForcaGame, saveForcaGame,
+removeForcaGame, criarForcaGame, enviarForca, getCacaGame, saveCacaGame,
+removeCacaGame, criarCacaGame, enviarCaca, getMinesGame, saveMinesGame,
+removeMinesGame, criarMinesGame, enviarMines, getVelhaGame, saveVelhaGame,
+removeVelhaGame, criarTabuleiroVelha, getDamaGame, saveDamaGame, removeDamaGame,
+criarTabuleiroDama, mesmoJid, mencionarJogo, enviarTextoJogos, ler, salvar, extrair,
+apagar, agora, enviar, avisar, processar, iniciar, pathgroupjson, salvarJson, lerJson
+}
+
+return ctx
+}
+// ===== COMANDOS SEM PREFIXO + FIGURINHA REGISTRADA =====
+if (!isCmd) {
+const mapaSemPrefixo = modulos.noPrefix()
+const partesLivres = String(body || '').trim().split(/\s+/).filter(Boolean)
+const gatilho = modulos.norm(partesLivres[0] || '')
+const real = mapaSemPrefixo[gatilho]
+if (real && plugins.resolver(real)) {
+isCmd = true
+command = real
+args = partesLivres.slice(1)
+q = args.join(' ')
+}
+}
+if (!isCmd && mensagem?.stickerMessage?.fileSha256) {
+const h = Buffer.from(mensagem.stickerMessage.fileSha256).toString('base64')
+const real = modulos.figuras()[h]
+if (real && plugins.resolver(real)) {
+isCmd = true
+command = real
+args = []
+q = ''
+}
+}
+// ===== TRAVAS GLOBAIS =====
+const cfgGlobal = modulos.globalCfg()
+if (cfgGlobal.bloqueados.map(v => nJid(v)).includes(senderNormalizado) && !SoDono)
+continue
+const subPvLiberado = !runtimeSub.isSubBot && ((isCmd && ['sub', 'code', 'meu'].includes(String(command || ''))) || (() => { try { return require('./DADOS_TOKITO/sub/cadastro').temPendente(from, sender) } catch { return false } })())
+if (!isGroup && cfgGlobal.antipv === true && !SoDono && !subPvLiberado)
+continue
+if (isGroup && dataGp?.[0]?.funcoes?.bangp === true && !SoDono)
+continue
+const chatType = isGroup ? 'GRUPO' : 'PRIVADO'
+const groupInfo = isGroup ? `(${groupName || 'SEM NOME'})` : '(Privado)'
+const msgType = isCmd ? 'COMANDO' : 'MENSAGEM'
+const msgContent = isCmd
+? `${prefix}${command}${q ? ` ${q}` : ''}`
+: body ||
+(mensagem?.imageMessage ? `[ IMAGEM${mensagem.imageMessage.caption ? `: ${mensagem.imageMessage.caption}` : ''} ]` :
+mensagem?.videoMessage ? `[ VÍDEO${mensagem.videoMessage.caption ? `: ${mensagem.videoMessage.caption}` : ''} ]` :
+mensagem?.audioMessage ? '[ ÁUDIO ]' :
+mensagem?.stickerMessage ? '[ FIGURINHA ]' :
+mensagem?.documentMessage ? `[ DOCUMENTO: ${mensagem.documentMessage.fileName || 'ARQUIVO'} ]` :
+mensagem?.contactMessage ? '[ CONTATO ]' :
+mensagem?.contactsArrayMessage ? '[ CONTATOS ]' :
+mensagem?.locationMessage ? '[ LOCALIZAÇÃO ]' :
+mensagem?.liveLocationMessage ? '[ LOCALIZAÇÃO AO VIVO ]' :
+mensagem?.reactionMessage ? `[ REAÇÃO: ${mensagem.reactionMessage.text || 'SEM EMOJI'} ]` :
+mensagem?.pollCreationMessage ? `[ ENQUETE: ${mensagem.pollCreationMessage.name || 'SEM TÍTULO'} ]` :
+mensagem?.pollCreationMessageV2 ? `[ ENQUETE: ${mensagem.pollCreationMessageV2.name || 'SEM TÍTULO'} ]` :
+mensagem?.pollCreationMessageV3 ? `[ ENQUETE: ${mensagem.pollCreationMessageV3.name || 'SEM TÍTULO'} ]` :
+'[ MENSAGEM SEM TEXTO ]')
+const branco = valor => colors.white(String(valor ?? ''))
+console.log(`${colors.cyan('╭──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╮')}
+${colors.cyan('|')} ${branco(isGroup ? '👥 MENSAGEM NO GRUPO' : '👤 MENSAGEM NO PRIVADO')}
+${colors.cyan('╰──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╯')}
+${colors.cyan('╭──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╮')}
+${colors.cyan('| 👤 USUÁRIO:')} ${branco(String(pushname || 'SEM NOME').toUpperCase())}
+${colors.cyan('| 📱 NÚMERO:')} ${branco(numeroSender || 'NÃO IDENTIFICADO')}
+${colors.cyan('| 📲 APARELHO:')} ${branco(whatIsPhone || 'DESCONHECIDO')}
+${colors.cyan('| 💬 CHAT:')} ${branco(`${chatType} ${groupInfo}`)}
+${colors.cyan('| 📨 TIPO:')} ${branco(msgType)}
+${colors.cyan('| 📝 CONTEÚDO:')} ${branco(msgContent)}
+${colors.cyan('| 🕒 HORA:')} ${branco(dataHoraBR)}
+${colors.cyan('╰──. ݁ ⛧ ₊ ⊹ 🧊 . ݁ ˖ ❆ິ̸ . ݁──╯')}`)
+if (budy2 === 'prefixo') {
+if (isBotoff && !SoDono)
+continue
+await botaozin(mess.prefixChanged(prefix), [{
+texto: mess.botaoMenu(),
+id: `${prefix}menu`
+}], [sender])
+continue
+}
+const comandosComerciaisGrupo = new Set(['lojinha', 'loja', 'sub', 'code', 'meu'])
+const liberarComercialGrupo = isCmd && comandosComerciaisGrupo.has(String(command || '').toLowerCase())
+if (!runtimeSub.isSubBot && isGroup && nescessario.aluguel === true && !SoDono && !aluguel.autorizado(from) && !liberarComercialGrupo) {
+if (isCmd)
+await reply(mess.aluguelBloqueado(prefix))
+continue
+}
+const bloqueadoEventoPre = await plugins.evento(plug(), 'pre').catch(error => {
+console.log('[PLUGIN EVENTO PRE]', modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+return false
+})
+if (bloqueadoEventoPre)
+continue
+const bloqueada = await funcoes.verificar({
+tokito,
+info,
+original: info.message,
+mensagem,
+from,
+sender,
+body,
+isGroup,
+isGroupAdmins,
+isBotGroupAdmins,
+dono: SoDono,
+isCmd,
+pushname,
+groupMembers,
+menc_jid2,
+dataGp,
+setGp,
+newsletter,
+selo
+}).catch(error => {
+console.log('[FUNÇÕES AUTOMÁTICAS]', modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+return false
+})
+if (bloqueada)
+continue
+const respondeuJogo = await funcoes.jogos.verificar(contextoJogos()).catch(error => {
+console.log('[JOGOS AUTOMÁTICOS]', modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+return false
+})
+if (respondeuJogo)
+continue
+const bloqueadoEventoPlugin = await plugins.evento(plug()).catch(error => {
+console.log('[PLUGIN EVENTO]', modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+return false
+})
+if (bloqueadoEventoPlugin)
+continue
+if (!isCmd)
+continue
+if (isGroup && dataGp?.[0]?.funcoes?.modoia?.ativo === true && !isGroupAdmins && !SoDono) {
+await agenteIA.responderRestricao(plug(), command, 'administrador', dataGp?.[0]?.funcoes?.modoia?.tipo || 'texto').catch(() => reply('No modo IA, membros conversam comigo normalmente sem usar comandos.'))
+continue
+}
+if (isGroup && dataGp?.[0]?.funcoes?.soadm === true && !isGroupAdmins && !SoDono) {
+await reply(mess.soadmBloqueado())
+continue
+}
+if (isBotoff && !SoDono)
+continue
+const acessoPlugin = regrasPlugins.verificar({
+cfg: nescessario,
+command,
+isGroup,
+from,
+SoDono,
+isVip
+})
+if (acessoPlugin.bloqueado) {
+await reply(acessoPlugin.tipo === 'vip' ? mess.onlyVipCmd(acessoPlugin.nome) : mess.blockCmdNegado(acessoPlugin.nome))
+continue
+}
+////////////////////////////////////////////////////////////////////////////////////
+let erroPlugin = null
+
+const rodou = await plugins.executar(command, plug()).catch(error => {
+erroPlugin = error
+
+console.log(
+'[PLUGIN]',
+command,
+modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes'
+)
+
+return false
+})
+
+if (erroPlugin) {
+if (modulos.ehErroApi(erroPlugin, API_URL)) {
+await reply(
+mess.erroApi(modulos.siteApi(API_URL))
+)
+}
+else {
+await reply(
+mess.error()
+)
+}
+
+continue
+}
+
+if (rodou)
+continue
+const inicio = performance.now()
+
+try {
+const inicioSimilar = performance.now()
+const achado = similar(comandos(), command)
+const tempoSimilar = performance.now() - inicioSimilar
+await botaozin(mess.commandNotFound({
+prefix,
+command,
+nome: achado.nome ? `${prefix}${achado.nome}` : 'Nenhum',
+porcentagem: `${Number(achado.porcentagem || 0).toFixed(1)}%`,
+tempo: `${tempoSimilar.toFixed(3)} ms`
+}), [{
+texto: mess.botaoMenu(),
+id: `${prefix}menu`
+}], [sender])
+}
+catch (error) {
+console.log(colors.red('❌ Erro na semelhança:'), modulos.sanitizarErro(error, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+await botaozin(mess.commandNotFound({
+prefix,
+command,
+nome: 'Nenhum',
+porcentagem: '0.0%',
+tempo: '0.000 ms'
+}), [{
+texto: mess.botaoMenu(),
+id: `${prefix}menu`
+}], [sender])
+}
+continue
+}
+}
+catch (erro) {
+console.log(colors.red('❌ erro ao reiniciar :('), modulos.sanitizarErro(erro, [API_KEY_TOKITO]) || 'Erro sem detalhes')
+}
+}
+
+module.exports = starttokito
+}

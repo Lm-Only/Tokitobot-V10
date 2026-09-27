@@ -497,8 +497,7 @@ return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ───�
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delvip @usuario
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}viplist
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}limparvip
-┃࣪ ╎—̳͟͞͞ 👑 ${prefix}addcmdvip comando
-┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delcmdvip comando
+┃࣪ ╎—̳͟͞͞ 👑 ${prefix}addcmdvip comando┃࣪ ╎—̳͟͞͞ 👑 ${prefix}delcmdvip comando
 ┃࣪ ╎—̳͟͞͞ 👑 ${prefix}listcmdvip
 ┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
 ╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
@@ -998,3 +997,205 @@ return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ───�
 ┃࣪ ╎—̳͟͞͞ 🪙 ${prefix}modocoins 1/0
 ┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
 ╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🏙️｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐶𝐼𝐷𝐴𝐷𝐸
+├╾═╼･ﾟ𖤐ﾟ･｡💼｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}registrarcidade nome
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}perfilcidade
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}trabalhar
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}depositar valor
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}sacar valor
+┃࣪ ╎—̳͟͞͞ 💼 ${prefix}banco
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🏦｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐺𝐸𝑅𝐸𝑁𝐶𝐼𝐴𝑅-𝐶𝑂𝐼𝑁𝑆
+├╾═╼･ﾟ𖤐ﾟ･｡💰｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 💰 ${prefix}addcoins @usuario valor
+┃࣪ ╎—̳͟͞͞ 💰 ${prefix}removecoins @usuario valor
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
+}
+
+exports.menuff = (NomeDoBot, sender, isCargo, isChVip, hora, prefix, ownerName, baileysVersion) => {
+return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🔥｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝙼𝙴𝙽𝚄-𝙵𝚁𝙴𝙴-𝙵𝙸𝚁𝙴
+├╾═╼･ﾟ𖤐ﾟ･｡🎮｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🤖 𝙱𝙾𝚃: ${NomeDoBot}
+┃࣪ ╎—̳͟͞͞ 👑 𝙲𝚁𝙸𝙰𝙳𝙾𝚁: ${ownerName}
+┃࣪ ╎—̳͟͞͞ 👤 𝚄𝚂𝚄Á𝚁𝙸𝙾: @${sender.split('@')[0]}
+┃࣪ ╎—̳͟͞͞ 🛡️ 𝙲𝙰𝚁𝙶𝙾: ${isCargo}
+┃࣪ ╎—̳͟͞͞ 💎 𝚅𝙸𝙿: ${isChVip}
+┃࣪ ╎—̳͟͞͞ ⏰ 𝙷𝙾𝚁𝙰: ${hora}
+┃࣪ ╎—̳͟͞͞ 📦 𝙱𝙰𝙸𝙻𝙴𝚈𝚂: ${baileysVersion}
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡👍｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐿𝐼𝐾𝐸𝑆-𝐹𝐹
+├╾═╼･ﾟ𖤐ﾟ･｡🔥｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}likes UID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}autolike UID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}autolike del UID
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎮｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝑆𝐴𝐿𝐴𝑆-𝐹𝐹
+├╾═╼･ﾟ𖤐ﾟ･｡🔥｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}criarsala NOME|SENHA|12|1|BR
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}versala SESSION_ID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}jogadoressala SESSION_ID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}expulsarsala SESSION_ID|UID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}iniciarsala SESSION_ID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}pararsala SESSION_ID
+┃࣪ ╎—̳͟͞͞ 🔥 ${prefix}statussalas
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡⚔️｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝙼𝙾𝙳𝙾-𝙵𝚁𝙴𝙴-𝙵𝙸𝚁𝙴
+├╾═╼･ﾟ𖤐ﾟ･｡🎮｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🎮 ${prefix}modofreefire 1/0
+┃࣪ ╎—̳͟͞͞ 📋 ${prefix}sala 1x1 até 6x6
+┃࣪ ╎—̳͟͞͞ ❌ ${prefix}sala cancelar
+┃࣪ ╎—̳͟͞͞ 🔒 f — fechar o grupo
+┃࣪ ╎—̳͟͞͞ 🔓 a — abrir o grupo
+┃࣪ ╎—̳͟͞͞ 📢 m — marcar o grupo
+┃࣪ ╎—̳͟͞͞ ⚔️ ${prefix}xgp NOME
+┃࣪ ╎—̳͟͞͞ ⚔️ ${prefix}time NOME,NOME,NOME,NOME,NOME,NOME
+┃࣪ ╎—̳͟͞͞ ⚔️ ${prefix}nota
+┃࣪ ╎—̳͟͞͞ ⚔️ ${prefix}nota add TEXTO
+┃࣪ ╎—̳͟͞͞ ⚔️ ${prefix}nota del NÚMERO
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎭｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝑅𝐸𝐴𝐶̧𝑂̃𝐸𝑆
+├╾═╼･ﾟ𖤐ﾟ･｡✨｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🎭 ${prefix}rgreacao 😻 | dylan
+┃࣪ ╎—̳͟͞͞ 🎭 ${prefix}rmreacao dylan
+┃࣪ ╎—̳͟͞͞ 🎭 ${prefix}listareacao
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
+}
+exports.menulogos = (NomeDoBot, sender, isCargo, isChVip, hora, prefix, ownerName, baileysVersion) => {
+return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎨｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝙼𝙴𝙽𝚄-𝙻𝙾𝙶𝙾𝚂
+├╾═╼･ﾟ𖤐ﾟ･｡✨｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🤖 𝙱𝙾𝚃: ${NomeDoBot}
+┃࣪ ╎—̳͟͞͞ 👑 𝙲𝚁𝙸𝙰𝙳𝙾𝚁: ${ownerName}
+┃࣪ ╎—̳͟͞͞ 👤 𝚄𝚂𝚄Á𝚁𝙸𝙾: @${sender.split('@')[0]}
+┃࣪ ╎—̳͟͞͞ 🛡️ 𝙲𝙰𝚁𝙶𝙾: ${isCargo}
+┃࣪ ╎—̳͟͞͞ 💎 𝚅𝙸𝙿: ${isChVip}
+┃࣪ ╎—̳͟͞͞ ⏰ 𝙷𝙾𝚁𝙰: ${hora}
+┃࣪ ╎—̳͟͞͞ 📦 𝙱𝙰𝙸𝙻𝙴𝚈𝚂: ${baileysVersion}
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎨｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐿𝑂𝐺𝑂𝑆-1-𝑇𝐸𝑋𝑇𝑂
+├╾═╼･ﾟ𖤐ﾟ･｡✨｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}darkgreen texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}glitch texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}write texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}advancedglow texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}typography texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}pixelglitch texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}neonglitch texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}flag texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}flag3d texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}blackpink texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}glowing texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}underwater texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}cartoon texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}papercut texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}watercolor texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}gradient texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}galaxy texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}frozen texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}metal3d texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}naruto texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}amongus texto
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}comic3d texto
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🖌️｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐿𝑂𝐺𝑂𝑆-2-𝑇𝐸𝑋𝑇𝑂𝑆
+├╾═╼･ﾟ𖤐ﾟ･｡✨｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}pornhub texto1|texto2
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}deadpool texto1|texto2
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}thor texto1|texto2
+┃࣪ ╎—̳͟͞͞ ✨ ${prefix}captainamerica texto1|texto2
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
+}
+
+exports.menualt = (NomeDoBot, sender, isCargo, isChVip, hora, prefix, ownerName, baileysVersion) => {
+return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎚️｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝙼𝙴𝙽𝚄-𝙰𝙻𝚃𝙴𝚁𝙰𝙳𝙾𝚁𝙴𝚂
+├╾═╼･ﾟ𖤐ﾟ･｡🎬｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🤖 𝙱𝙾𝚃: ${NomeDoBot}
+┃࣪ ╎—̳͟͞͞ 👑 𝙲𝚁𝙸𝙰𝙳𝙾𝚁: ${ownerName}
+┃࣪ ╎—̳͟͞͞ 👤 𝚄𝚂𝚄Á𝚁𝙸𝙾: @${sender.split('@')[0]}
+┃࣪ ╎—̳͟͞͞ 🛡️ 𝙲𝙰𝚁𝙶𝙾: ${isCargo}
+┃࣪ ╎—̳͟͞͞ 💎 𝚅𝙸𝙿: ${isChVip}
+┃࣪ ╎—̳͟͞͞ ⏰ 𝙷𝙾𝚁𝙰: ${hora}
+┃࣪ ╎—̳͟͞͞ 📦 𝙱𝙰𝙸𝙻𝙴𝚈𝚂: ${baileysVersion}
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎬｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐴𝐿𝑇𝐸𝑅𝐴𝐷𝑂𝑅𝐸𝑆-𝐷𝐸-𝑉𝐼́𝐷𝐸𝑂
+├╾═╼･ﾟ𖤐ﾟ･｡🎞️｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🎞️ ${prefix}videolento
+┃࣪ ╎—̳͟͞͞ 🎞️ ${prefix}videorapido
+┃࣪ ╎—̳͟͞͞ 🎞️ ${prefix}videocontrario
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
+
+╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ──────⟡
+┃ ┏☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┓
+├╾═╼･ﾟ𖤐ﾟ･｡🎚️｡･ﾟ𖤐ﾟ･╾═╼┤
+├─ ⊹ 𖤐  𝐴𝐿𝑇𝐸𝑅𝐴𝐷𝑂𝑅𝐸𝑆-𝐷𝐸-𝐴́𝑈𝐷𝐼𝑂
+├╾═╼･ﾟ𖤐ﾟ･｡🎧｡･ﾟ𖤐ﾟ･╾═╼┤
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}audiolento
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}audiorapido
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}speedup
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}slowed
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}grave
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}grave2
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}esquilo
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}estourar
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}bass
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}bass2
+┃࣪ ╎—̳͟͞͞ 🎧 ${prefix}vozmenino
+┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
+╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡`
+}

@@ -498,7 +498,6 @@ config.API_KEY_TOKITO = ''
 salvarConfigBot(config)
 return solicitarToken()
 }
-
 return acesso
 }
 
@@ -998,3 +997,144 @@ qrcodeTerminal.generate(qr, { small: true })
 console.log('')
 }
 }
+const shouldReconnect = lastDisconnect?.error
+? new Boom(lastDisconnect.error).output.statusCode
+: 0
+
+switch (connection) {
+case 'connecting':
+info(`${NomeDoBot} está conectando ao WhatsApp...`)
+break
+
+case 'open':
+global.startTime = Math.floor(Date.now() / 1000)
+
+reconectando = false
+metodo = null
+ultimoQr = null
+global.qrTokitoAtual = null
+global.mostrarQrTokito = false
+
+await tokito.sendPresenceUpdate('available').catch(() => {})
+await tokito.updateProfileStatus(`[ ${NomeDoBot} ONLINE 🧊 ]`).catch(() => {})
+
+if (runtimeSub.isSubBot) {
+  sucesso(`Sub Bot ${runtimeSub.id} conectado com sucesso.`)
+  process.send?.({ type: 'online', number: runtimeSub.id })
+} else {
+  console.log(banner3?.string || colors.cyan('\nTOKITO | V10\n'))
+  console.log(banner2?.string || colors.blue('dylan Modz'))
+  console.log('')
+  sucesso(`${NomeDoBot} conectado com sucesso.`)
+  console.log('')
+  iniciarAvisosUpdate(tokito)
+  await sistemaSub?.iniciar(tokito).catch(error => erroSistema('Erro ao iniciar sistema de Sub Bots', error))
+}
+break
+
+case 'close':
+// Durante o primeiro pareamento do Sub Bot ainda não existe uma sessão registrada.
+// Alguns fechamentos transitórios chegam como 401; eles não devem ser tratados como logout definitivo.
+if (runtimeSub.isSubBot && !state.creds.registered) {
+  aviso(`Conexão inicial do Sub Bot fechada. Aguardando novo handshake. Código: ${shouldReconnect}`)
+  if (!reconectando) {
+    reconectando = true
+    setTimeout(() => {
+      reconectando = false
+      iniciando = false
+      startConnect()
+    }, 2500)
+  }
+  break
+}
+
+if (shouldReconnect === DisconnectReason.loggedOut || shouldReconnect === 401) {
+erro('Sessão encerrada. Apague a pasta qrcode e conecte novamente.')
+if (runtimeSub.isSubBot) process.send?.({ type: 'logged-out', number: runtimeSub.id })
+process.exit(0)
+}
+
+if (!reconectando) {
+reconectando = true
+
+aviso(`Conexão fechada. Reconectando em 5 segundos. Código: ${shouldReconnect}`)
+
+setTimeout(() => {
+reconectando = false
+iniciando = false
+startConnect()
+}, 5000)
+}
+break
+}
+}
+
+/*
+       * MENSAGENS
+       * Mantido no mesmo fluxo da base original.
+       */
+if (events['messages.upsert']) {
+const upsert = events['messages.upsert']
+
+try {
+if (!processarMensagemTokito)
+processarMensagemTokito = require('../tokito.js')
+
+if (process.env.TOKITO_DEBUG_RX === '1')
+info(`RX messages.upsert recebido (${upsert?.type || 'sem tipo'})`)
+
+await processarMensagemTokito(tokito, upsert)
+}
+catch (error) {
+erroSistema('Erro no tokito.js', error)
+}
+}
+
+if (events['creds.update']) await saveCreds()
+})
+
+iniciando = false
+} catch (error) {
+erroSistema('Ocorreu um erro ao iniciar a conexão', error)
+aviso('Tentando iniciar novamente em 5 segundos...')
+
+setTimeout(() => {
+iniciando = false
+startConnect()
+}, 5000)
+}
+}
+
+process.on('uncaughtException', error => erroSistema('uncaughtException detectado', error))
+process.on('unhandledRejection', error => erroSistema('unhandledRejection detectado', error))
+
+async function iniciarTokito() {
+recarregarConfigBot()
+
+if (runtimeSub.isSubBot) {
+  metodo = sessaoRegistrada() ? null : 'codigo'
+  startConnect()
+  return
+}
+
+const acesso = await prepararAcesso()
+if (!acesso?.allowed) {
+erro(`Não foi possível liberar o acesso: ${acesso?.message || acesso?.code || 'validação indisponível'}`)
+process.exit(24)
+return
+}
+
+if (!sessaoRegistrada() || process.argv.includes('painel')) await showMenu()
+
+placar.ciclo(resultado => {
+if (!resultado?.definitive) return
+erro(`A licença foi recusada pelo servidor: ${resultado.message || resultado.code || 'acesso bloqueado'}`)
+setTimeout(() => process.exit(24), 1200)
+})
+startConnect()
+}
+
+iniciarTokito().catch(error => {
+erroSistema('Falha ao validar o acesso do Tokito V10', error)
+process.exit(24)
+})
