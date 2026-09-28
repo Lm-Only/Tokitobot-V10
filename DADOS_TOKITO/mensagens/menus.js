@@ -484,6 +484,7 @@ return `╭─ ͡┄┄───────ׅ─ׅ─ׅ──ׂ─ׅ───�
 ┃࣪ ╎—̳͟͞͞ 🚫 ${prefix}blockuser @usuario
 ┃࣪ ╎—̳͟͞͞ 🚫 ${prefix}unblockuser @usuario
 ┃࣪ ╎—̳͟͞͞ 🚫 ${prefix}antipv 1/0
+┃࣪ ╎—̳͟͞͞ 🔒 ${prefix}antipv2 1/0
 ┃࣪ ╎—̳͟͞͞ 🚫 ${prefix}visualizarmsg 1/0
 ┃ ┗☆∻∹⋰ ★∻∹⋰ ☆∻∹⋰ ★∻∹⋰┛
 ╰─ ͡┄┄───────ׂ─ׅ───ׂ─ׅ─ׅ───ׅ───⟡
