@@ -45,7 +45,20 @@ categoria: 'aluguel'
 async executar(ctx) {
 if (!ctx.SoDono)
 return ctx.reply(ctx.mess.onlyOwner())
-return ctx.reply(ctx.mess.aluguelLista(aluguel.ativos()))
+const lista = aluguel.ativos()
+const enriquecida = await Promise.all(lista.map(async g => {
+let grupoNome = String(g.grupoNome || '').trim()
+let quantidadeMembros = Number(g.quantidadeMembros || 0)
+try {
+if (ctx.tokito?.groupMetadata) {
+const meta = await ctx.tokito.groupMetadata(g.id)
+grupoNome = String(meta?.subject || grupoNome).trim()
+quantidadeMembros = Array.isArray(meta?.participants) ? meta.participants.length : quantidadeMembros
+}
+} catch {}
+return { ...g, grupoNome, quantidadeMembros }
+}))
+return ctx.reply(ctx.mess.aluguelLista(enriquecida))
 }
 }
 )
