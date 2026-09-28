@@ -29,6 +29,7 @@ const salvar = (n, d) => {
 const GLOBAL_PADRAO = {
   visualizarmsg: false,
   antipv: false,
+  antipv2: false,
   audioMenu: false,
   audioMenuArquivo: '',
   bloqueados: []
