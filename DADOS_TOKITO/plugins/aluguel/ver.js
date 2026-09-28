@@ -47,7 +47,15 @@ return ctx.reply(ctx.mess.sogrupo())
 const g = aluguel.ativos().find(x => x.id === ctx.from && x.ativo !== false)
 if (!g)
 return ctx.reply(ctx.mess.aluguelNaoTem())
-return ctx.reply(ctx.mess.aluguelVer(g))
+let dados = { ...g }
+try {
+if (ctx.tokito?.groupMetadata) {
+const meta = await ctx.tokito.groupMetadata(ctx.from)
+dados.grupoNome = String(meta?.subject || dados.grupoNome || '').trim()
+dados.quantidadeMembros = Array.isArray(meta?.participants) ? meta.participants.length : Number(dados.quantidadeMembros || 0)
+}
+} catch {}
+return ctx.reply(ctx.mess.aluguelVer(dados))
 }
 }
 )
