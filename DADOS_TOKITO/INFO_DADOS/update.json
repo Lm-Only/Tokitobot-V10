@@ -4,62 +4,69 @@
   "channel": "stable",
   "repository": "dylan-Modz/Tokitobot-V10",
   "ref": "main",
-  "publishedAt": "2026-09-28T16:17:33.397Z",
+  "publishedAt": "2026-09-28T16:30:00.000Z",
   "changelog": [
-    "[Novidade] feat: adiciona comando antipv2",
-    "A versão 10.1.31 já está disponível para atualização.",
-    "Antipv2 atualizado",
-    "Modulos atualizado",
-    "Arquivo principal do bot atualizado"
+    "Adiciona o AntiPV2 global com aviso antes do bloqueio real no WhatsApp.",
+    "Evita execução duplicada do AntiPV2 para o mesmo contato.",
+    "Impede que o próprio número do bot seja registrado como mensagem recebida no privado.",
+    "Reconhece mensagens de canais/newsletters e busca o nome real do canal nos metadados."
   ],
   "delete": [],
   "archiveSha256": "",
-  "type": "Novidade",
-  "title": "feat: adiciona comando antipv2",
+  "type": "Atualização",
+  "title": "AntiPV2 e correção dos logs",
   "notice": "A versão 10.1.31 já está disponível para atualização.",
   "required": true,
   "minimumVersion": "10.0.0",
   "files": [
     {
-      "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
-      "sha256": "65f8d5a05ab8c387222b34a23929345db218471769fcafdfa2d76b9dba7d2e33",
-      "size": 1005
+      "path": "tokito.js",
+      "sha256": "",
+      "size": 0
     },
     {
       "path": "DADOS_TOKITO/sistemas/modulos.js",
-      "sha256": "8d5343afe157b7585f4c8b74cb3ff029b9cc1f06e90f16345aa210afac4ee1f1",
-      "size": 22648
+      "sha256": "",
+      "size": 0
     },
     {
-      "path": "tokito.js",
-      "sha256": "79d19c7477ea1b4aa49592e0989fc7cdeff3cc54cce2f6e7c86fec45854ff6ed",
-      "size": 51470
+      "path": "DADOS_TOKITO/mensagens/menus.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
+      "sha256": "",
+      "size": 0
+    },
+    {
+      "path": "package.json",
+      "sha256": "",
+      "size": 0
     }
   ],
   "releases": [
     {
-      "version": "10.1.30",
-      "fromVersion": "10.1.28",
+      "version": "10.1.31",
+      "fromVersion": "10.1.30",
       "channel": "stable",
-      "type": "Correção",
-      "title": "Sistema Sub Bot - atualização corrigida",
-      "notice": "A versão 10.1.30 já está disponível para atualização.",
+      "type": "Atualização",
+      "title": "AntiPV2 e correção dos logs",
+      "notice": "A versão 10.1.31 já está disponível para atualização.",
       "changelog": [
-        "Instalação completa do sistema Sub Bot e correção do atualizador."
+        "Adiciona o AntiPV2 global com aviso antes do bloqueio real no WhatsApp.",
+        "Evita execução duplicada do AntiPV2 para o mesmo contato.",
+        "Impede que o próprio número do bot seja registrado como mensagem recebida no privado.",
+        "Reconhece mensagens de canais/newsletters e busca o nome real do canal nos metadados."
       ],
       "files": [
         {
-          "path": ".gitignore",
+          "path": "tokito.js",
           "sha256": "",
           "size": 0
         },
         {
-          "path": "DADOS_TOKITO/connect.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/database/lib/exports.js",
+          "path": "DADOS_TOKITO/sistemas/modulos.js",
           "sha256": "",
           "size": 0
         },
@@ -69,127 +76,7 @@
           "size": 0
         },
         {
-          "path": "DADOS_TOKITO/plugins/aluguel/comprar.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/dono/channel.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/dono/grupos.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/dono/prefixo.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/index.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/menus/menu.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/menus/menuadm.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/00-cadastro.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/code.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/delsub.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/meu.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/restartsub.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/sub.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/sub/subs.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/autolike.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/dados.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/aluguel/index.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/cadastro.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/index.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/manager.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/pagamentos.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/permissoes.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/runtime.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/store.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/sub/ui.js",
+          "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
           "sha256": "",
           "size": 0
         },
@@ -197,54 +84,16 @@
           "path": "package.json",
           "sha256": "",
           "size": 0
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "",
-          "size": 0
         }
       ],
       "delete": [],
       "required": true,
-      "publishedAt": "2026-09-27T23:55:00.000Z"
-    },
-    {
-      "version": "10.1.31",
-      "fromVersion": "10.1.30",
-      "channel": "stable",
-      "type": "Novidade",
-      "title": "feat: adiciona comando antipv2",
-      "notice": "A versão 10.1.31 já está disponível para atualização.",
-      "changelog": [
-        "Antipv2 atualizado",
-        "Modulos atualizado",
-        "Arquivo principal do bot atualizado"
-      ],
-      "files": [
-        {
-          "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
-          "sha256": "65f8d5a05ab8c387222b34a23929345db218471769fcafdfa2d76b9dba7d2e33",
-          "size": 1005
-        },
-        {
-          "path": "DADOS_TOKITO/sistemas/modulos.js",
-          "sha256": "8d5343afe157b7585f4c8b74cb3ff029b9cc1f06e90f16345aa210afac4ee1f1",
-          "size": 22648
-        },
-        {
-          "path": "tokito.js",
-          "sha256": "79d19c7477ea1b4aa49592e0989fc7cdeff3cc54cce2f6e7c86fec45854ff6ed",
-          "size": 51470
-        }
-      ],
-      "delete": [],
-      "required": true,
-      "publishedAt": "2026-09-28T16:17:33.396Z"
+      "publishedAt": "2026-09-28T16:30:00.000Z"
     }
   ],
-  "versao": "10.1.30",
+  "versao": "10.1.31",
   "mode": "incremental",
   "notify": true,
   "incremental": true,
-  "fromVersion": "10.1.28"
+  "fromVersion": "10.1.30"
 }
