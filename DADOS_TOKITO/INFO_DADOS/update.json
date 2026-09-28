@@ -1,41 +1,36 @@
 {
   "bot": "Tokito Bot V10",
-  "version": "10.1.31",
+  "version": "10.1.32",
   "channel": "stable",
   "repository": "dylan-Modz/Tokitobot-V10",
   "ref": "main",
-  "publishedAt": "2026-09-28T16:30:00.000Z",
+  "publishedAt": "2026-09-28T16:55:00.000Z",
   "changelog": [
-    "Adiciona o AntiPV2 global com aviso antes do bloqueio real no WhatsApp.",
-    "Evita execução duplicada do AntiPV2 para o mesmo contato.",
-    "Impede que o próprio número do bot seja registrado como mensagem recebida no privado.",
-    "Reconhece mensagens de canais/newsletters e busca o nome real do canal nos metadados."
+    "Redesenha lista-aluguel no padrão visual atual do Tokito.",
+    "Lista de aluguéis passa a mostrar nome do grupo, plano, membros, ID, status, vencimento e tempo restante.",
+    "veraluguel recebe o mesmo padrão visual e informações detalhadas do grupo.",
+    "Atualiza nome e quantidade de membros consultando os metadados atuais do grupo quando disponíveis."
   ],
   "delete": [],
   "archiveSha256": "",
   "type": "Atualização",
-  "title": "AntiPV2 e correção dos logs",
-  "notice": "A versão 10.1.31 já está disponível para atualização.",
+  "title": "Novo design do sistema de aluguéis",
+  "notice": "A versão 10.1.32 já está disponível para atualização.",
   "required": true,
   "minimumVersion": "10.0.0",
   "files": [
     {
-      "path": "tokito.js",
+      "path": "DADOS_TOKITO/plugins/aluguel/lista.js",
       "sha256": "",
       "size": 0
     },
     {
-      "path": "DADOS_TOKITO/sistemas/modulos.js",
+      "path": "DADOS_TOKITO/plugins/aluguel/ver.js",
       "sha256": "",
       "size": 0
     },
     {
-      "path": "DADOS_TOKITO/mensagens/menus.js",
-      "sha256": "",
-      "size": 0
-    },
-    {
-      "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
+      "path": "DADOS_TOKITO/mensagens/mensagens.js",
       "sha256": "",
       "size": 0
     },
@@ -47,36 +42,31 @@
   ],
   "releases": [
     {
-      "version": "10.1.31",
-      "fromVersion": "10.1.30",
+      "version": "10.1.32",
+      "fromVersion": "10.1.31",
       "channel": "stable",
       "type": "Atualização",
-      "title": "AntiPV2 e correção dos logs",
-      "notice": "A versão 10.1.31 já está disponível para atualização.",
+      "title": "Novo design do sistema de aluguéis",
+      "notice": "A versão 10.1.32 já está disponível para atualização.",
       "changelog": [
-        "Adiciona o AntiPV2 global com aviso antes do bloqueio real no WhatsApp.",
-        "Evita execução duplicada do AntiPV2 para o mesmo contato.",
-        "Impede que o próprio número do bot seja registrado como mensagem recebida no privado.",
-        "Reconhece mensagens de canais/newsletters e busca o nome real do canal nos metadados."
+        "Redesenha lista-aluguel no padrão visual atual do Tokito.",
+        "Lista de aluguéis passa a mostrar nome do grupo, plano, membros, ID, status, vencimento e tempo restante.",
+        "veraluguel recebe o mesmo padrão visual e informações detalhadas do grupo.",
+        "Atualiza nome e quantidade de membros consultando os metadados atuais do grupo quando disponíveis."
       ],
       "files": [
         {
-          "path": "tokito.js",
+          "path": "DADOS_TOKITO/plugins/aluguel/lista.js",
           "sha256": "",
           "size": 0
         },
         {
-          "path": "DADOS_TOKITO/sistemas/modulos.js",
+          "path": "DADOS_TOKITO/plugins/aluguel/ver.js",
           "sha256": "",
           "size": 0
         },
         {
-          "path": "DADOS_TOKITO/mensagens/menus.js",
-          "sha256": "",
-          "size": 0
-        },
-        {
-          "path": "DADOS_TOKITO/plugins/dono/antipv2.js",
+          "path": "DADOS_TOKITO/mensagens/mensagens.js",
           "sha256": "",
           "size": 0
         },
@@ -88,12 +78,12 @@
       ],
       "delete": [],
       "required": true,
-      "publishedAt": "2026-09-28T16:30:00.000Z"
+      "publishedAt": "2026-09-28T16:55:00.000Z"
     }
   ],
-  "versao": "10.1.31",
+  "versao": "10.1.32",
   "mode": "incremental",
   "notify": true,
   "incremental": true,
-  "fromVersion": "10.1.30"
+  "fromVersion": "10.1.31"
 }
