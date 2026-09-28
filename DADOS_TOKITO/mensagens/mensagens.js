@@ -3184,8 +3184,8 @@ return `- ⚠️ \`𝚂𝙴𝙼 𝙰𝙻𝚄𝙶𝚄𝙴𝙻\`
 
 exports.aluguelVer = g => {
 const permanente = !g.expiraEm
-let vencimento = 'Sem vencimento'
-let resta = '♾️ permanente'
+let vencimento = 'sᴇᴍ ᴠᴇɴᴄɪᴍᴇɴᴛᴏ'
+let resta = '♾️ ᴘᴇʀᴍᴀɴᴇɴᴛᴇ'
 
 if (!permanente) {
 const fim = new Date(g.expiraEm)
@@ -3193,23 +3193,69 @@ const diff = Math.max(0, fim - Date.now())
 const d = Math.floor(diff / 86400000)
 const h = Math.floor(diff / 3600000) % 24
 const min = Math.floor(diff / 60000) % 60
-
 vencimento = fim.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
-resta = `${d}d ${h}h ${min}m`
+resta = `${d}ᴅ ${h}ʜ ${min}ᴍ`
 }
+
+const inicio = g.inicio || g.salvoEm
+const inicioTxt = inicio
+? new Date(inicio).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+: 'ɴᴀ̃ᴏ ɪɴғᴏʀᴍᴀᴅᴏ'
 
 return `- 🏠 \`𝙰𝙻𝚄𝙶𝚄𝙴𝙻 𝙰𝚃𝙸𝚅𝙾\`
 
-> 📦 ׄ ( ᴘʟᴀɴᴏ: ${g.planoNome || 'Plano'} )
-${g.grupoNome ? `> 🏷️ ׄ ( ɢʀᴜᴘᴏ: ${g.grupoNome} )\n` : ''}${g.quantidadeMembros ? `> 👤 ׄ ( ᴍᴇᴍʙʀᴏs: ${g.quantidadeMembros} )\n` : ''}> 📅 ׄ ( ᴠᴇɴᴄᴇ: ${vencimento} )
-> ⏳ ׄ ( ʀᴇsᴛᴀ: ${resta} )`
+> 📦 ׄ ( ${g.planoNome || 'Plano'} — ᴘʟᴀɴᴏ. )
+> 👥 ׄ ( ${g.grupoNome || 'Grupo sem nome'} — ɢʀᴜᴘᴏ. )
+> 👤 ׄ ( ${Number(g.quantidadeMembros || 0)} — ᴍᴇᴍʙʀᴏs. )
+> 🆔 ׄ ( ${g.id || 'ɴᴀ̃ᴏ ɪɴғᴏʀᴍᴀᴅᴏ'} )
+> ${g.ativo !== false ? '✅' : '❌'} ׄ ( ${g.ativo !== false ? 'ᴀᴛɪᴠᴏ' : 'ᴠᴇɴᴄɪᴅᴏ'} — sᴛᴀᴛᴜs. )
+> 📅 ׄ ( ${inicioTxt} — ɪɴɪ́ᴄɪᴏ. )
+> 📆 ׄ ( ${vencimento} — ᴠᴇɴᴄᴇ. )
+> ⏳ ׄ ( ${resta} — ʀᴇsᴛᴀ. )`
 }
 
 exports.aluguelLista = lista => {
-return `- 🏠 \`𝙰𝙻𝚄𝙶𝚄𝙴́𝙸𝚂\`
+const total = lista.length
+const ativos = lista.filter(g => g.ativo !== false).length
+const vencidos = total - ativos
 
-${lista.length ? lista.map((g, i) => `> 🏠 ׄ ( ${i + 1} — ${g.id} )
-> 🏠 ׄ ( ${g.ativo !== false ? '✅ ativo' : '❌ expirado'} — ${g.planoNome || 'Plano'} • ${g.expiraEm ? new Date(g.expiraEm).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }) : 'sem vencimento'} )`).join('\n\n') : '> 🏠 ׄ ( ɴᴇɴʜᴜᴍ ᴀʟᴜɢᴜᴇʟ ʀᴇɢɪsᴛʀᴀᴅᴏ. )'}`
+const itens = lista.map((g, i) => {
+const permanente = !g.expiraEm
+let vencimento = 'sᴇᴍ ᴠᴇɴᴄɪᴍᴇɴᴛᴏ'
+let resta = '♾️ ᴘᴇʀᴍᴀɴᴇɴᴛᴇ'
+if (!permanente) {
+const fim = new Date(g.expiraEm)
+const diff = Math.max(0, fim - Date.now())
+const d = Math.floor(diff / 86400000)
+const h = Math.floor(diff / 3600000) % 24
+const min = Math.floor(diff / 60000) % 60
+vencimento = fim.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+resta = `${d}ᴅ ${h}ʜ ${min}ᴍ`
+}
+return `- 🏠 \`𝙰𝙻𝚄𝙶𝚄𝙴𝙻 ${String(i + 1).padStart(2, '0')}\`
+
+> 👥 ׄ ( ${g.grupoNome || 'Grupo sem nome'} )
+> 📦 ׄ ( ${g.planoNome || 'Plano'} — ᴘʟᴀɴᴏ. )
+> 👤 ׄ ( ${Number(g.quantidadeMembros || 0)} — ᴍᴇᴍʙʀᴏs. )
+> 🆔 ׄ ( ${g.id || 'ɴᴀ̃ᴏ ɪɴғᴏʀᴍᴀᴅᴏ'} )
+> ${g.ativo !== false ? '✅' : '❌'} ׄ ( ${g.ativo !== false ? 'ᴀᴛɪᴠᴏ' : 'ᴠᴇɴᴄɪᴅᴏ'}. )
+> 📅 ׄ ( ${vencimento}. )
+> ⏳ ׄ ( ${resta}. )`
+}).join('\n\n')
+
+return `- 🏘️ \`𝙻𝙸𝚂𝚃𝙰 𝙳𝙴 𝙰𝙻𝚄𝙶𝚄𝙴́𝙸𝚂\`
+
+> 🏘️ ׄ ( ${total} — ᴀʟᴜɢᴜᴇ́ɪs ʀᴇɢɪsᴛʀᴀᴅᴏs. )
+> ✅ ׄ ( ${ativos} — ᴀʟᴜɢᴜᴇ́ɪs ᴀᴛɪᴠᴏs. )
+> ❌ ׄ ( ${vencidos} — ᴀʟᴜɢᴜᴇ́ɪs ᴠᴇɴᴄɪᴅᴏs. )
+
+${itens || '> 🏠 ׄ ( ɴᴇɴʜᴜᴍ ᴀʟᴜɢᴜᴇʟ ʀᴇɢɪsᴛʀᴀᴅᴏ. )'}
+
+- 📊 \`𝚁𝙴𝚂𝚄𝙼𝙾\`
+
+> 🏘️ ׄ ( ${total} — ᴛᴏᴛᴀʟ. )
+> ✅ ׄ ( ${ativos} — ᴀᴛɪᴠᴏs. )
+> ❌ ׄ ( ${vencidos} — ᴠᴇɴᴄɪᴅᴏs. )`
 }
 
 exports.aluguelRemovido = id => {
