@@ -326,6 +326,9 @@ return padrao
 }
 }
 
+// Evita o Anti-PV2 responder duas vezes quando a mesma mensagem chega em mais de um upsert.
+const antiPv2EmProcessamento = new Map()
+
 process.on('uncaughtException', function(err) {
 console.error((new Date).toUTCString() + ' uncaughtException:', modulos.sanitizarErro(err, [API_KEY_TOKITO]) || 'Erro sem detalhes')
 console.error(modulos.sanitizarErro(err?.stack || '', [API_KEY_TOKITO]))
@@ -339,6 +342,7 @@ for (const info of upsert?.messages || []) {
 const from = info.key?.remoteJid
 const isGroup = from?.endsWith('@g.us')
 const isStatus = from === 'status@broadcast'
+const isNewsletter = String(from || '').endsWith('@newsletter')
 if (!from)
 continue
 
@@ -1127,7 +1131,7 @@ const plug = (cmd = command) => {
 const ctx = {
 __dirname, __filename, isSubBot: runtimeSub.isSubBot, subId: runtimeSub.id, subOwner: runtimeSub.owner, isSubOwner, runtimeSub, tokito, upsert, info, mensagem, type, content, from, sender,
 body, Procurar_String, budy2, budy, PR_String, q, args, command: cmd, prefix, isCmd,
-isGroup, isStatus, stub, pushname, groupMetadata, groupName, groupDesc, groupMembers,
+isGroup, isStatus, isNewsletter, stub, pushname, groupMetadata, groupName, groupDesc, groupMembers,
 dirGroup, data_IDGP, dataGp, setGp, isWelkom, isWelkom2, isWelkom3, limpo, nJid,
 NumeroDoBot, botNumber, messagesC, argss, nmrdn, numerodono, isBotoff, isBotoes,
 isModobn, isBot, SoDono, DonoOficial, groupAdmins, membrosGrupo, adminsNormalizados,
@@ -1185,12 +1189,78 @@ const cfgGlobal = modulos.globalCfg()
 if (cfgGlobal.bloqueados.map(v => nJid(v)).includes(senderNormalizado) && !SoDono)
 continue
 const subPvLiberado = !runtimeSub.isSubBot && ((isCmd && ['sub', 'code', 'meu'].includes(String(command || ''))) || (() => { try { return require('./DADOS_TOKITO/sub/cadastro').temPendente(from, sender) } catch { return false } })())
-if (!isGroup && cfgGlobal.antipv === true && !SoDono && !subPvLiberado)
+/* ===== ANTI-PV 2 ===== */
+if (!isGroup && !isNewsletter && !isStatus && !isBot && cfgGlobal.antipv2 === true && !SoDono && !subPvLiberado) {
+  const alvoAntiPv2 = nJid(sender, [
+    info?.key?.remoteJidAlt,
+    info?.key?.senderAlt,
+    info?.key?.participantAlt,
+    info?.participantAlt,
+    info?.key?.remoteJid,
+    from
+  ])
+  const botAntiPv2 = nJid(botNumber || tokito.user?.id || '')
+  const donoProtegidoAntiPv2 = numerodono.map(item => nJid(item)).filter(Boolean).includes(alvoAntiPv2)
+
+  if (alvoAntiPv2 && alvoAntiPv2.endsWith('@s.whatsapp.net') && alvoAntiPv2 !== botAntiPv2 && !donoProtegidoAntiPv2) {
+    const agoraAntiPv2 = Date.now()
+    const ultimaExecucaoAntiPv2 = Number(antiPv2EmProcessamento.get(alvoAntiPv2) || 0)
+    if (agoraAntiPv2 - ultimaExecucaoAntiPv2 < 30000) continue
+
+    antiPv2EmProcessamento.set(alvoAntiPv2, agoraAntiPv2)
+    setTimeout(() => {
+      if (antiPv2EmProcessamento.get(alvoAntiPv2) === agoraAntiPv2) antiPv2EmProcessamento.delete(alvoAntiPv2)
+    }, 30000).unref?.()
+
+    const numeroAntiPv2 = String(alvoAntiPv2).split('@')[0].split(':')[0].replace(/\D/g, '')
+    const avisoAntiPv2 =
+`- 🔒 \`𝙰𝙽𝚃𝙸 𝙿𝚅\`
+
+> 👤 ׄ ( @${numeroAntiPv2} )
+
+> ⚠️ ׄ ( 𝙾 𝚙𝚛𝚒𝚟𝚊𝚍𝚘 𝚍𝚎𝚜𝚝𝚎 𝚋𝚘𝚝 𝚎́ 𝚙𝚛𝚘𝚝𝚎𝚐𝚒𝚍𝚘. )
+> 🚫 ׄ ( 𝙼𝚎𝚗𝚜𝚊𝚐𝚎𝚗𝚜 𝚙𝚛𝚒𝚟𝚊𝚍𝚊𝚜 𝚗𝚊̃𝚘 𝚜𝚊̃𝚘 𝚙𝚎𝚛𝚖𝚒𝚝𝚒𝚍𝚊𝚜. )
+> 🔐 ׄ ( 𝚂𝚎𝚞 𝚗𝚞́𝚖𝚎𝚛𝚘 𝚜𝚎𝚛𝚊́ 𝚋𝚕𝚘𝚚𝚞𝚎𝚊𝚍𝚘 𝚊𝚞𝚝𝚘𝚖𝚊𝚝𝚒𝚌𝚊𝚖𝚎𝚗𝚝𝚎. )`
+
+    try {
+      await tokito.sendMessage(from, {
+        text: avisoAntiPv2,
+        mentions: [alvoAntiPv2],
+        contextInfo: { ...canalInfo([alvoAntiPv2]), mentionedJid: [alvoAntiPv2] }
+      })
+      if (typeof tokito.updateBlockStatus !== 'function') throw new Error('updateBlockStatus não está disponível na conexão atual.')
+      await tokito.updateBlockStatus(alvoAntiPv2, 'block')
+      console.log(`[ ANTI-PV2 ] Bloqueado: ${numeroAntiPv2}`)
+    } catch (error) {
+      console.log('[ ANTI-PV2 ]', error?.message || error)
+    }
+  } else {
+    console.log('[ ANTI-PV2 ] JID não seguro para bloqueio:', alvoAntiPv2 || sender)
+  }
+  continue
+}
+
+if (!isGroup && !isNewsletter && !isStatus && !isBot && cfgGlobal.antipv === true && !SoDono && !subPvLiberado)
 continue
 if (isGroup && dataGp?.[0]?.funcoes?.bangp === true && !SoDono)
 continue
-const chatType = isGroup ? 'GRUPO' : 'PRIVADO'
-const groupInfo = isGroup ? `(${groupName || 'SEM NOME'})` : '(Privado)'
+
+let newsletterName = ''
+if (isNewsletter) {
+try {
+const nomeEvento = info?.newsletterName || info?.message?.newsletterName || mensagem?.newsletterName || mensagem?.newsletterAdminInviteMessage?.newsletterName || ''
+newsletterName = String(nomeEvento || '').trim()
+if (!newsletterName && typeof tokito.newsletterMetadata === 'function') {
+const metaNewsletter = await tokito.newsletterMetadata('jid', from).catch(() => null)
+newsletterName = String(metaNewsletter?.name || metaNewsletter?.subject || metaNewsletter?.thread_metadata?.name?.text || metaNewsletter?.threadMetadata?.name?.text || metaNewsletter?.metadata?.name || '').trim()
+}
+} catch { newsletterName = '' }
+if (!newsletterName && pushname && pushname !== 'Usuário') newsletterName = String(pushname).trim()
+if (!newsletterName) newsletterName = 'CANAL SEM NOME'
+}
+
+const chatType = isNewsletter ? 'CANAL' : isGroup ? 'GRUPO' : 'PRIVADO'
+const groupInfo = isNewsletter ? `(${newsletterName})` : isGroup ? `(${groupName || 'SEM NOME'})` : '(Privado)'
 const msgType = isCmd ? 'COMANDO' : 'MENSAGEM'
 const msgContent = isCmd
 ? `${prefix}${command}${q ? ` ${q}` : ''}`
@@ -1210,18 +1280,23 @@ mensagem?.pollCreationMessageV2 ? `[ ENQUETE: ${mensagem.pollCreationMessageV2.n
 mensagem?.pollCreationMessageV3 ? `[ ENQUETE: ${mensagem.pollCreationMessageV3.name || 'SEM TÍTULO'} ]` :
 '[ MENSAGEM SEM TEXTO ]')
 const branco = valor => colors.white(String(valor ?? ''))
+if (!isBot || isNewsletter) {
+const cabecalhoLog = isNewsletter ? '📢 MENSAGEM DE CANAL' : isGroup ? '👥 MENSAGEM NO GRUPO' : '👤 MENSAGEM NO PRIVADO'
+const dadosOrigemLog = isNewsletter
+? `${colors.cyan('| 📢 CANAL:')} ${branco(String(newsletterName || 'CANAL SEM NOME').toUpperCase())}\n${colors.cyan('| 🆔 ID:')} ${branco(from || 'NÃO IDENTIFICADO')}`
+: `${colors.cyan('| 👤 USUÁRIO:')} ${branco(String(pushname || 'SEM NOME').toUpperCase())}\n${colors.cyan('| 📱 NÚMERO:')} ${branco(numeroSender || 'NÃO IDENTIFICADO')}\n${colors.cyan('| 📲 APARELHO:')} ${branco(whatIsPhone || 'DESCONHECIDO')}`
+
 console.log(`${colors.cyan('╭──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╮')}
-${colors.cyan('|')} ${branco(isGroup ? '👥 MENSAGEM NO GRUPO' : '👤 MENSAGEM NO PRIVADO')}
+${colors.cyan('|')} ${branco(cabecalhoLog)}
 ${colors.cyan('╰──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╯')}
 ${colors.cyan('╭──. ݁ ⛧ ₊ ⊹ . ݁ ˖ ❆ິ̸ . ݁──╮')}
-${colors.cyan('| 👤 USUÁRIO:')} ${branco(String(pushname || 'SEM NOME').toUpperCase())}
-${colors.cyan('| 📱 NÚMERO:')} ${branco(numeroSender || 'NÃO IDENTIFICADO')}
-${colors.cyan('| 📲 APARELHO:')} ${branco(whatIsPhone || 'DESCONHECIDO')}
+${dadosOrigemLog}
 ${colors.cyan('| 💬 CHAT:')} ${branco(`${chatType} ${groupInfo}`)}
 ${colors.cyan('| 📨 TIPO:')} ${branco(msgType)}
 ${colors.cyan('| 📝 CONTEÚDO:')} ${branco(msgContent)}
 ${colors.cyan('| 🕒 HORA:')} ${branco(dataHoraBR)}
 ${colors.cyan('╰──. ݁ ⛧ ₊ ⊹ 🧊 . ݁ ˖ ❆ິ̸ . ݁──╯')}`)
+}
 if (budy2 === 'prefixo') {
 if (isBotoff && !SoDono)
 continue
