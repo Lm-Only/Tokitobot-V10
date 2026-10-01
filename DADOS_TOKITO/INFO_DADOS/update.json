@@ -1,45 +1,25 @@
 {
   "bot": "Tokito Bot V10",
-  "version": "10.1.32",
+  "version": "10.1.33",
   "channel": "stable",
   "repository": "dylan-Modz/Tokitobot-V10",
   "ref": "main",
-  "publishedAt": "2026-09-28T16:55:00.000Z",
+  "publishedAt": "2026-10-01T00:59:47.309Z",
   "changelog": [
-    "Redesenha lista-aluguel no padrão visual atual do Tokito.",
-    "Lista de aluguéis passa a mostrar nome do grupo, plano, membros, ID, status, vencimento e tempo restante.",
-    "veraluguel recebe o mesmo padrão visual e informações detalhadas do grupo.",
-    "Atualiza nome e quantidade de membros consultando os metadados atuais do grupo quando disponíveis."
+    "[Melhoria] Remove .gitignore",
+    "A versão 10.1.33 já está disponível para atualização.",
+    ".gitignore removido"
   ],
-  "delete": [],
+  "delete": [
+    ".gitignore"
+  ],
   "archiveSha256": "",
-  "type": "Atualização",
-  "title": "Novo design do sistema de aluguéis",
-  "notice": "A versão 10.1.32 já está disponível para atualização.",
+  "type": "Melhoria",
+  "title": "Remove .gitignore",
+  "notice": "A versão 10.1.33 já está disponível para atualização.",
   "required": true,
   "minimumVersion": "10.0.0",
-  "files": [
-    {
-      "path": "DADOS_TOKITO/plugins/aluguel/lista.js",
-      "sha256": "",
-      "size": 0
-    },
-    {
-      "path": "DADOS_TOKITO/plugins/aluguel/ver.js",
-      "sha256": "",
-      "size": 0
-    },
-    {
-      "path": "DADOS_TOKITO/mensagens/mensagens.js",
-      "sha256": "",
-      "size": 0
-    },
-    {
-      "path": "package.json",
-      "sha256": "",
-      "size": 0
-    }
-  ],
+  "files": [],
   "releases": [
     {
       "version": "10.1.32",
@@ -79,6 +59,23 @@
       "delete": [],
       "required": true,
       "publishedAt": "2026-09-28T16:55:00.000Z"
+    },
+    {
+      "version": "10.1.33",
+      "fromVersion": "10.1.32",
+      "channel": "stable",
+      "type": "Melhoria",
+      "title": "Remove .gitignore",
+      "notice": "A versão 10.1.33 já está disponível para atualização.",
+      "changelog": [
+        ".gitignore removido"
+      ],
+      "files": [],
+      "delete": [
+        ".gitignore"
+      ],
+      "required": true,
+      "publishedAt": "2026-10-01T00:59:47.309Z"
     }
   ],
   "versao": "10.1.32",
